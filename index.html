@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to My Portfolio</title>
+    <meta name="description" content="A student personal portfolio." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="riso-grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="./index.html">
+        <span class="brand-dot"></span>
+        <span data-bind="name">My Portfolio</span>
+      </a>
+      <nav class="nav" aria-label="Portfolio navigation">
+        <a aria-current="page" href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./works.html">Works</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="home-page ocean-page" aria-labelledby="home-title">
+        <div class="open-book" aria-label="Open portfolio book">
+          <div class="book-page book-left">
+            <div class="home-copy">
+              <span class="tape tape-a"></span>
+              <p class="eyebrow">Dreamy Ocean Archive</p>
+              <h1 id="home-title" data-bind="homeTitle">Ocean Notes of Yishu</h1>
+              <p class="home-line" data-bind="homeLine">
+                A personal archive of projects, fragments and quiet experiments.
+              </p>
+              <a class="portfolio-button" href="./projects.html">Explore Portfolio</a>
+            </div>
+            <div class="book-note note-left">personal notes</div>
+            <div class="floating-fish fish-three"></div>
+          </div>
+          <div class="book-page book-right">
+            <figure class="polaroid home-polaroid">
+              <div class="photo-placeholder ocean-photo">
+                <img src="./assets/home/dream-ocean.jpg" alt="梦核海洋氛围图" />
+              </div>
+              <figcaption>campus / notes / memory</figcaption>
+            </figure>
+            <div class="home-mini-tags" aria-label="Creative tags">
+              <span>Content Creator</span>
+              <span>AI Explorer</span>
+              <span>New Media Practice</span>
+              <span>Visual Storytelling</span>
+            </div>
+            <div class="home-archive-label">
+              <span>STARTED IN 2026</span>
+              <strong>CONTENT / AI / CREATIVE</strong>
+            </div>
+            <div class="book-note">projects</div>
+            <div class="book-grid"></div>
+            <div class="floating-fish fish-one"></div>
+            <div class="floating-fish fish-two"></div>
+            <a class="page-corner" href="./about.html" aria-label="Turn to About page"></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

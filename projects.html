@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | My Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="riso-grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">My Portfolio</span></a>
+      <nav class="nav" aria-label="Portfolio navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a aria-current="page" href="./projects.html">Projects</a>
+        <a href="./works.html">Works</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page projects-page" aria-labelledby="projects-title">
+        <div class="section-title">
+          <span>02</span>
+          <h1 id="projects-title">Projects</h1>
+        </div>
+        <p class="page-note">Complete projects will live here. Each card opens a quiet project page with process, result and reflection.</p>
+        <div class="project-grid" id="project-grid"></div>
+      </section>
+    </main>
+
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

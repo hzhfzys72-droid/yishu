@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Works | My Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="riso-grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">My Portfolio</span></a>
+      <nav class="nav" aria-label="Portfolio navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./projects.html">Projects</a>
+        <a aria-current="page" href="./works.html">Works</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page works-page" aria-labelledby="works-title">
+        <div class="section-title">
+          <span>03</span>
+          <h1 id="works-title">Works</h1>
+        </div>
+        <p class="page-note">Small pieces, drafts and visual records are collected here like papers clipped inside a portfolio.</p>
+        <div class="works-board" id="works-board"></div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="work-lightbox" aria-hidden="true">
+      <button type="button" aria-label="Close preview">Close</button>
+      <div class="lightbox-card">Work preview placeholder</div>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
