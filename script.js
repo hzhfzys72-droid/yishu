@@ -171,6 +171,7 @@ function setupLightbox() {
   }
   const preview = lightbox.querySelector(".lightbox-card");
   const close = lightbox.querySelector("button");
+  let closeTimer;
   const openWorkPreview = (index) => {
     const work = data.works[Number(index)];
     if (!work) return;
@@ -212,12 +213,19 @@ function setupLightbox() {
       </div>
     `;
 
+    window.clearTimeout(closeTimer);
+    lightbox.classList.remove("is-closing");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
   };
   const closeWorkPreview = () => {
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
+    if (lightbox.getAttribute("aria-hidden") === "true") return;
+    lightbox.classList.add("is-closing");
+    closeTimer = window.setTimeout(() => {
+      lightbox.setAttribute("aria-hidden", "true");
+      lightbox.classList.remove("is-closing");
+      document.body.classList.remove("modal-open");
+    }, 240);
   };
 
   document.querySelectorAll(".work-tile[data-preview-index]").forEach((tile) => {
@@ -271,19 +279,36 @@ function setupImagePreview() {
 
   const preview = lightbox.querySelector("img");
   const close = lightbox.querySelector("button");
+  let closeTimer;
+
+  const closeImagePreview = () => {
+    if (lightbox.getAttribute("aria-hidden") === "true") return;
+    lightbox.classList.add("is-closing");
+    closeTimer = window.setTimeout(() => {
+      lightbox.setAttribute("aria-hidden", "true");
+      lightbox.classList.remove("is-closing");
+      document.body.classList.remove("modal-open");
+    }, 220);
+  };
 
   images.forEach((image) => {
     image.addEventListener("click", () => {
+      window.clearTimeout(closeTimer);
       preview.src = image.currentSrc || image.src;
       preview.alt = image.alt || "项目图片预览";
       lightbox.classList.toggle("universe-lightbox", image.closest(".universe-photo") !== null);
+      lightbox.classList.remove("is-closing");
       lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
     });
   });
 
-  close.addEventListener("click", () => lightbox.setAttribute("aria-hidden", "true"));
+  close.addEventListener("click", closeImagePreview);
   lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) lightbox.setAttribute("aria-hidden", "true");
+    if (event.target === lightbox) closeImagePreview();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.getAttribute("aria-hidden") === "false") closeImagePreview();
   });
 }
 
@@ -299,13 +324,14 @@ function setupProjectCardLinks() {
 function createDeepSeaParticles() {
   const layer = document.createElement("div");
   const isSmallScreen = window.matchMedia("(max-width: 640px)").matches;
-  const particleCount = isSmallScreen ? 10 : 22;
+  const particleCount = isSmallScreen ? 7 : 14;
 
-  layer.className = "deep-sea-particles";
+  layer.className = "deep-sea-particles dream-overlay";
   layer.setAttribute("aria-hidden", "true");
 
   for (let index = 0; index < particleCount; index += 1) {
     const particle = document.createElement("span");
+    particle.className = "dream-particle";
     const size = Math.round(2 + Math.random() * 4);
     const duration = Math.round(10 + Math.random() * 15);
     const delay = Math.round(Math.random() * -25);
@@ -325,6 +351,18 @@ function createDeepSeaParticles() {
   document.body.prepend(layer);
 }
 
+function createDreamAtmosphere() {
+  const layer = document.createElement("div");
+  layer.className = "dream-atmosphere dream-overlay";
+  layer.setAttribute("aria-hidden", "true");
+  layer.innerHTML = `
+    <span class="dream-glow dream-glow-one"></span>
+    <span class="dream-glow dream-glow-two"></span>
+    <span class="dream-glow dream-glow-three"></span>
+  `;
+  document.body.prepend(layer);
+}
+
 function setupScrollReveal() {
   document.querySelectorAll(".reveal").forEach((node) => {
     node.classList.remove("reveal");
@@ -333,7 +371,9 @@ function setupScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       });
     },
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
@@ -378,6 +418,6 @@ renderProjects();
 renderWorks();
 setupProjectCardLinks();
 setupLightbox();
+createDreamAtmosphere();
 createDeepSeaParticles();
 setupScrollReveal();
-

@@ -7491,6 +7491,24 @@ img {
 }
 
 .about-photo-frame img,
+.universe-photo img,
+.project-photo img,
+.project-cover img,
+.work-thumb img,
+.work-modal-photo img,
+.work-modal-page img,
+.work-single-preview img,
+.image-lightbox img {
+  position: relative;
+  z-index: 1;
+}
+
+.about-photo-frame img {
+  position: absolute;
+  inset: 0;
+}
+
+.about-photo-frame img,
 .home-page .ocean-photo img,
 .universe-photo img {
   object-fit: cover;
@@ -7747,5 +7765,386 @@ img {
 @media (min-width: 1080px) {
   .video-archive .video-timeline .timeline-notes {
     grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
+  }
+}
+
+/* Dreamcore motion layer */
+.dream-overlay,
+.dream-atmosphere,
+.deep-sea-particles {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.dream-atmosphere {
+  isolation: isolate;
+}
+
+.dream-glow {
+  position: absolute;
+  width: clamp(180px, 30vw, 440px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 38% 42%, rgba(232, 243, 250, 0.52), rgba(163, 190, 221, 0.2) 42%, rgba(112, 145, 191, 0) 72%);
+  filter: blur(18px);
+  opacity: 0.44;
+  transform: translate3d(0, 0, 0);
+  animation: dreamGlowBreath var(--dream-glow-duration, 18s) ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.dream-glow-one {
+  --dream-glow-duration: 19s;
+  top: 10vh;
+  left: -8vw;
+}
+
+.dream-glow-two {
+  --dream-glow-duration: 24s;
+  right: -10vw;
+  bottom: 14vh;
+  width: clamp(220px, 34vw, 500px);
+  background:
+    radial-gradient(circle at 46% 46%, rgba(244, 238, 252, 0.48), rgba(169, 184, 222, 0.18) 44%, rgba(98, 132, 184, 0) 74%);
+}
+
+.dream-glow-three {
+  --dream-glow-duration: 21s;
+  top: 48vh;
+  left: 42vw;
+  width: clamp(140px, 22vw, 300px);
+  opacity: 0.26;
+}
+
+main,
+.site-header,
+.lightbox,
+.image-lightbox {
+  position: relative;
+  z-index: 2;
+}
+
+.home-page,
+.about-page,
+.projects-page,
+.works-page,
+.contact-page,
+.contact-sheet {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-page > :not(.dream-decoration),
+.about-page > :not(.dream-decoration),
+.projects-page > :not(.dream-decoration),
+.works-page > :not(.dream-decoration),
+.contact-sheet > :not(.dream-decoration) {
+  position: relative;
+  z-index: 1;
+}
+
+.dream-decoration {
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  z-index: 0;
+  width: var(--dream-deco-size, clamp(80px, 16vw, 210px));
+  max-width: min(34vw, 240px);
+  height: auto;
+  border-radius: 22px;
+  object-fit: contain;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: var(--dream-deco-opacity, 0.12) !important;
+  transform: translate3d(0, 0, 0) rotate(var(--dream-deco-rotate, 0deg));
+  animation: dreamFloat var(--dream-deco-duration, 16s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.dream-decoration-angel {
+  --dream-deco-size: clamp(120px, 18vw, 240px);
+  --dream-deco-opacity: 0.13;
+  --dream-deco-rotate: -1deg;
+  --dream-float-y: 10px;
+  --dream-float-rotate: 1.2deg;
+  top: clamp(80px, 12vh, 130px);
+  right: clamp(8px, 7vw, 96px);
+}
+
+.dream-decoration-fish {
+  --dream-deco-size: clamp(110px, 20vw, 260px);
+  --dream-deco-opacity: 0.1;
+  --dream-deco-duration: 22s;
+  --dream-deco-rotate: 1.5deg;
+  --dream-float-y: 12px;
+  bottom: clamp(14px, 6vh, 80px);
+  left: clamp(6px, 6vw, 92px);
+}
+
+.dream-decoration-flower {
+  --dream-deco-size: clamp(76px, 12vw, 150px);
+  --dream-deco-opacity: 0.16;
+  --dream-deco-duration: 14s;
+  --dream-float-y: 7px;
+  top: clamp(118px, 17vh, 180px);
+  left: clamp(10px, 5vw, 68px);
+}
+
+.dream-decoration-cat {
+  --dream-deco-size: clamp(72px, 11vw, 138px);
+  --dream-deco-opacity: 0.14;
+  --dream-deco-duration: 18s;
+  --dream-float-y: 8px;
+  --dream-float-rotate: -1deg;
+  top: clamp(360px, 54vh, 560px);
+  right: clamp(10px, 8vw, 110px);
+}
+
+.dream-decoration-collage {
+  --dream-deco-size: clamp(170px, 25vw, 340px);
+  --dream-deco-opacity: 0.09;
+  --dream-deco-duration: 24s;
+  --dream-float-y: 10px;
+  top: clamp(90px, 16vh, 170px);
+  right: max(-90px, -5vw);
+}
+
+.dream-decoration-window {
+  --dream-deco-size: clamp(140px, 21vw, 280px);
+  --dream-deco-opacity: 0.1;
+  --dream-deco-duration: 20s;
+  --dream-float-y: 9px;
+  top: clamp(110px, 18vh, 210px);
+  left: max(-80px, -4vw);
+}
+
+.dream-decoration-angel-small {
+  --dream-deco-size: clamp(74px, 11vw, 150px);
+  --dream-deco-opacity: 0.12;
+  --dream-deco-duration: 16s;
+  --dream-float-y: 6px;
+  bottom: clamp(34px, 9vh, 120px);
+  right: clamp(10px, 5vw, 82px);
+}
+
+.dream-decoration-flower-small {
+  --dream-deco-size: clamp(64px, 10vw, 130px);
+  --dream-deco-opacity: 0.16;
+  --dream-deco-duration: 15s;
+  --dream-float-y: 6px;
+  right: clamp(18px, 5vw, 72px);
+  bottom: clamp(16px, 5vh, 52px);
+}
+
+.dream-particle {
+  box-shadow: 0 0 10px rgba(232, 244, 248, 0.45);
+}
+
+.project-card,
+.work-tile,
+.project-cover img,
+.works-page .work-thumb img,
+.work-thumb img {
+  transition:
+    transform 420ms var(--bd-ease, ease),
+    box-shadow 420ms var(--bd-ease, ease);
+}
+
+.project-card:hover,
+.projects-page .project-card:hover,
+.work-tile:hover,
+.works-page .work-tile:hover {
+  transform: translateY(-5px) rotate(0.45deg) !important;
+}
+
+.project-card:hover .project-cover img,
+.projects-page .project-card:hover .project-cover img,
+.work-tile:hover .work-thumb img,
+.works-page .work-tile:hover .work-thumb img {
+  transform: scale(1.025) !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.lightbox,
+#work-lightbox,
+.image-lightbox {
+  transition:
+    opacity 240ms ease,
+    visibility 240ms ease;
+}
+
+#work-lightbox .lightbox-card,
+.image-lightbox img {
+  transition:
+    transform 240ms ease,
+    opacity 240ms ease;
+}
+
+.lightbox.is-closing,
+#work-lightbox.is-closing,
+.image-lightbox.is-closing {
+  opacity: 0 !important;
+  visibility: visible !important;
+  pointer-events: none;
+}
+
+#work-lightbox.is-closing .lightbox-card {
+  transform: translateY(8px) scale(0.985) !important;
+}
+
+.image-lightbox.is-closing img {
+  transform: translateY(8px) scale(0.985) !important;
+}
+
+.about-photo-frame img,
+.universe-photo img,
+.home-page .ocean-photo img,
+.project-cover img,
+.works-page .work-thumb img,
+.work-thumb img,
+.project-photo img,
+.photo-wall figure img,
+.material-wall figure img,
+.work-modal-photo img,
+.work-modal-page img,
+.work-single-preview img,
+.work-video-placeholder img,
+.qr-card img,
+.image-lightbox img {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+@keyframes dreamFloat {
+  from {
+    transform: translate3d(0, 0, 0) rotate(var(--dream-deco-rotate, 0deg));
+  }
+
+  to {
+    transform:
+      translate3d(0, var(--dream-float-y, 8px), 0)
+      rotate(calc(var(--dream-deco-rotate, 0deg) + var(--dream-float-rotate, 1deg)));
+  }
+}
+
+@keyframes dreamGlowBreath {
+  from {
+    opacity: 0.26;
+    transform: translate3d(-8px, 0, 0) scale(0.96);
+  }
+
+  to {
+    opacity: 0.46;
+    transform: translate3d(12px, 10px, 0) scale(1.05);
+  }
+}
+
+@media (max-width: 760px) {
+  .dream-glow {
+    opacity: 0.28;
+    filter: blur(16px);
+  }
+
+  .dream-decoration {
+    --dream-float-y: 5px;
+    max-width: 26vw;
+  }
+
+  .dream-decoration-fish,
+  .dream-decoration-collage,
+  .dream-decoration-angel-small {
+    display: none;
+  }
+
+  .dream-decoration-angel {
+    top: 96px;
+    right: -18px;
+  }
+
+  .dream-decoration-flower {
+    top: 132px;
+    left: -16px;
+  }
+
+  .dream-decoration-cat {
+    top: 360px;
+    right: -18px;
+  }
+
+  .dream-decoration-window {
+    left: -38px;
+    top: 118px;
+  }
+
+  .dream-decoration-flower-small {
+    right: 12px;
+    bottom: 12px;
+    max-width: 22vw;
+  }
+
+  .project-card:hover,
+  .projects-page .project-card:hover,
+  .work-tile:hover,
+  .works-page .work-tile:hover,
+  .project-card:hover .project-cover img,
+  .projects-page .project-card:hover .project-cover img,
+  .work-tile:hover .work-thumb img,
+  .works-page .work-tile:hover .work-thumb img {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dream-glow,
+  .dream-decoration,
+  .dream-particle,
+  .project-card,
+  .work-tile,
+  .project-cover img,
+  .work-thumb img,
+  #work-lightbox .lightbox-card,
+  .image-lightbox img {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* MBTI display image */
+.mbti-display-frame {
+  gap: 10px;
+  min-height: 0;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.mbti-display-frame img {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.mbti-display-frame span {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 760px) {
+  .mbti-display-frame img {
+    max-height: 220px;
   }
 }
