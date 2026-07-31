@@ -29,7 +29,7 @@ window.portfolioData = {
       highlight: "AI应用 / 产品探索 / Vibe Coding",
       tags: ["AI应用", "产品探索", "Vibe Coding"],
       cover: "OfferPilot",
-      coverImage: "./assets/projects/offerpilot/website.png",
+      coverImage: "./assets/projects/offerpilot/website-optimized.jpg",
       href: "./offerpilot.html",
       cta: "查看项目 →",
     },

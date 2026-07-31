@@ -38,7 +38,7 @@ function renderProjects() {
           <div class="project-cover">
             ${
               project.coverImage
-                ? `<img src="${project.coverImage}" alt="${project.title} 项目封面" loading="lazy">`
+                ? `<img src="${project.coverImage}" alt="${project.title} 项目封面" loading="lazy" decoding="async">`
                 : `<span>${project.cover}</span>`
             }
           </div>
@@ -88,7 +88,7 @@ function renderWorks() {
           <span class="work-thumb">
             ${
               work.coverImage
-                ? `<img src="${work.coverImage}" alt="${work.title} 作品封面" loading="lazy">`
+                ? `<img src="${work.coverImage}" alt="${work.title} 作品封面" loading="lazy" decoding="async">`
                 : `<span>${work.type}</span><small>${work.coverNote || "作品待补充"}</small>`
             }
           </span>
