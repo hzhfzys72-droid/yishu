@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | My Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="riso-grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">My Portfolio</span></a>
+      <nav class="nav" aria-label="Portfolio navigation">
+        <a href="./index.html">Home</a>
+        <a aria-current="page" href="./about.html">About</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./works.html">Works</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page about-page" aria-labelledby="about-title">
+        <div class="section-title">
+          <span>01</span>
+          <h1 id="about-title">About Me</h1>
+        </div>
+        <div class="about-book">
+          <div class="about-left-page">
+            <figure class="polaroid about-photo">
+              <span class="tape photo-tape"></span>
+              <div class="about-photo-frame">
+                <img src="./assets/about/zhang-yishu.jpg" alt="张逸舒个人照片" decoding="async" />
+                <span class="water-light"></span>
+                <span class="fish fish-one"></span>
+                <span class="fish fish-two"></span>
+                <span class="fish fish-three"></span>
+              </div>
+              <figcaption>blue memory / replace later</figcaption>
+            </figure>
+            <div class="photo-date">2026 / 湖南</div>
+            <div class="hand-arrow">this is me</div>
+            <section class="little-universe" aria-labelledby="little-universe-title">
+              <p class="little-universe-kicker">inspiration archive</p>
+              <h2 id="little-universe-title">My Little Universe</h2>
+              <div class="universe-collage">
+                <article class="universe-card universe-card-one">
+                  <span class="mini-tape"></span>
+                  <div class="universe-photo">
+                    <img src="./assets/about/universe/otome-character.jpg" alt="二次元棉花娃娃收藏" loading="lazy" decoding="async" />
+                  </div>
+                  <h3>Otome memory</h3>
+                  <p><strong>dream note / 2026</strong>角色、IP与一点被收藏起来的心动。</p>
+                </article>
+                <article class="universe-card universe-card-two">
+                  <span class="mini-tape"></span>
+                  <div class="universe-photo">
+                    <img src="./assets/about/universe/fandom-collection.jpg" alt="吃谷追星收藏" loading="lazy" decoding="async" />
+                  </div>
+                  <h3>Fandom diary</h3>
+                  <p><strong>ticket stub / collection</strong>关于喜欢、陪伴和情绪连接的小证据。</p>
+                </article>
+                <article class="universe-card universe-card-three">
+                  <span class="mini-tape"></span>
+                  <div class="universe-photo">
+                    <img src="./assets/about/universe/offline-concert.jpg" alt="线下演唱会记录" loading="lazy" decoding="async" />
+                  </div>
+                  <h3>Dream fragments</h3>
+                  <p><strong>offline light / memory</strong>把现场的光、声音和瞬间留在这里。</p>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <div class="about-right-page">
+            <div class="about-copy paper-sheet">
+              <span class="tape tape-b"></span>
+              <p class="hello-line">Hello,<br />I'm <span data-bind="displayName">[Name]</span>.</p>
+              <dl class="student-info">
+                <div><dt>School</dt><dd data-bind="school">[School]</dd></div>
+                <div><dt>Major</dt><dd data-bind="major">[Major]</dd></div>
+                <div><dt>Year</dt><dd data-bind="grade">[Grade]</dd></div>
+              </dl>
+              <p class="about-brief" data-bind="about"></p>
+              <div class="tag-cloud" id="about-tags"></div>
+            </div>
+
+            <div class="currently-card">
+              <p>Currently</p>
+              <ul id="currently-list"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./data.js" defer></script>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
