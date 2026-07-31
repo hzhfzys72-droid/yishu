@@ -7438,3 +7438,314 @@ main > .deep-reveal {
     transform: none;
   }
 }
+
+/* Media fidelity and compact layout fixes */
+img {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  background-blend-mode: normal !important;
+}
+
+.photo-placeholder::after,
+.project-cover::after,
+.work-thumb::after,
+.project-photo::after,
+.universe-photo::after,
+.universe-photo::before,
+.about-photo-frame::before,
+.about-photo-frame::after,
+.about-photo-frame .water-light,
+.about-photo-frame .fish {
+  display: none !important;
+}
+
+.photo-placeholder::after,
+.project-cover::after,
+.work-thumb::after,
+.project-photo::after,
+.universe-photo::after,
+.about-photo-frame::after,
+.work-modal-photo::before,
+.work-modal-page::before {
+  mix-blend-mode: normal !important;
+}
+
+.about-photo-frame img,
+.universe-photo img,
+.home-page .ocean-photo img,
+.project-cover img,
+.works-page .work-thumb img,
+.work-thumb img,
+.project-photo img,
+.photo-wall figure img,
+.material-wall figure img,
+.work-modal-photo img,
+.work-modal-page img,
+.work-single-preview img,
+.work-video-placeholder img,
+.qr-card img {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.about-photo-frame img,
+.home-page .ocean-photo img,
+.universe-photo img {
+  object-fit: cover;
+}
+
+.project-cover,
+.works-page .work-thumb,
+.work-thumb {
+  width: auto;
+  min-height: 0 !important;
+  aspect-ratio: 4 / 3;
+  max-height: 420px;
+}
+
+.project-cover img,
+.works-page .work-thumb img,
+.work-thumb img {
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  object-fit: contain;
+  object-position: center;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.works-page .work-tile.top-crop-cover .work-thumb img,
+.home-page .ocean-photo img {
+  object-fit: cover;
+}
+
+.project-photo,
+.photo-wall figure,
+.material-wall figure,
+.work-single-preview,
+.work-modal-page {
+  max-height: none;
+  overflow: hidden;
+}
+
+.project-photo img,
+.photo-wall figure img,
+.material-wall figure img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  object-position: center;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.hero-photo img,
+.wide-photo img {
+  max-height: 460px;
+}
+
+.certificate-photo img,
+.material-wall .project-photo img,
+.image-cases .project-photo img,
+.three-photo-wall .project-photo img {
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.project-grid,
+.projects-page .project-grid,
+.works-page .works-board,
+.process-board,
+.direction-cards,
+.timeline-notes,
+.photo-wall,
+.three-photo-wall,
+.material-wall,
+.case-placeholders.image-cases,
+.metric-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(18px, 3vw, 24px);
+  align-items: start;
+}
+
+.video-archive .timeline-notes {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.project-card,
+.work-tile,
+.projects-page .project-card,
+.works-page .work-tile,
+.process-board article,
+.direction-cards article,
+.timeline-notes article,
+.archive-note,
+.archive-process,
+.archive-gallery,
+.project-body,
+.work-intro,
+.work-title,
+.page-note,
+.archive-cover-copy,
+.contact-main-card,
+.social-card,
+.email-card {
+  min-width: 0;
+  writing-mode: horizontal-tb !important;
+  word-break: normal !important;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.process-board article,
+.direction-cards article,
+.timeline-notes article,
+.works-page .work-tile,
+.works-page .work-tile.has-cover,
+.project-card {
+  min-height: 0 !important;
+  height: auto !important;
+  align-content: start;
+  align-self: start;
+}
+
+.timeline-notes article,
+.timeline-notes article:nth-child(n),
+.video-archive .timeline-notes article,
+.video-archive .timeline-notes article:nth-child(n) {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 10px;
+  min-width: 0;
+  transform: none !important;
+}
+
+.process-board h3,
+.timeline-notes h3,
+.process-board p,
+.timeline-notes p,
+.project-body h2,
+.project-body p,
+.work-title,
+.work-intro,
+.archive-note p,
+.archive-process p {
+  writing-mode: horizontal-tb !important;
+  word-break: normal !important;
+  overflow-wrap: break-word;
+  line-height: 1.7;
+}
+
+.work-title,
+.work-intro,
+.work-tags,
+.work-action,
+.work-empty-note {
+  margin-inline: 18px;
+}
+
+.works-page .featured-work {
+  grid-column: auto;
+}
+
+.archive-cover {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+}
+
+.work-pdf-frame,
+.work-file-preview {
+  height: min(68vh, 640px);
+}
+
+@media (min-width: 1080px) {
+  .video-archive .timeline-notes {
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+  }
+
+  .video-archive .direction-cards {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .archive-cover,
+  .project-grid,
+  .projects-page .project-grid,
+  .works-page .works-board,
+  .process-board,
+  .direction-cards,
+  .timeline-notes,
+  .photo-wall,
+  .three-photo-wall,
+  .material-wall,
+  .case-placeholders.image-cases {
+    grid-template-columns: 1fr;
+  }
+
+  .project-cover,
+  .works-page .work-thumb,
+  .work-thumb {
+    max-height: 340px;
+  }
+
+  .project-photo img,
+  .photo-wall figure img,
+  .material-wall figure img {
+    max-height: 360px;
+  }
+}
+
+.video-archive .video-timeline {
+  transform: none !important;
+}
+
+.video-archive .video-timeline .timeline-notes {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 20px !important;
+  align-items: start !important;
+}
+
+.video-archive .video-timeline .timeline-notes article,
+.video-archive .video-timeline .timeline-notes article:nth-child(n) {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 20px !important;
+  transform: none !important;
+}
+
+.video-archive .video-timeline .timeline-notes span,
+.video-archive .video-timeline .timeline-notes h3,
+.video-archive .video-timeline .timeline-notes p {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 0 8px !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.7 !important;
+  transform: none !important;
+}
+
+.video-archive .video-timeline .timeline-notes span {
+  font-size: 24px !important;
+}
+
+@media (min-width: 1080px) {
+  .video-archive .video-timeline .timeline-notes {
+    grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
+  }
+}
