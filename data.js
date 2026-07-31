@@ -134,10 +134,9 @@ window.portfolioData = {
       intro:
         "围绕社会时事热点进行资料整理、观点分析和汇报展示，在团队协作中完成主题梳理、内容组织与PPT视觉呈现。",
       tags: ["PPT设计", "信息整理", "团队协作"],
-      link: "./assets/works/ppt/hotspot-analysis.pptx",
-      cta: "查看 PPT →",
       coverNote: "封面待补充",
       coverImage: "./assets/works/covers/hotspot-ppt.jpg",
+      previewImages: ["./assets/works/ppt/hotspot-analysis-01.jpg"],
     },
     {
       type: "PPT",
@@ -145,10 +144,9 @@ window.portfolioData = {
       intro:
         "为校园组织招新制作的宣传型PPT，用于介绍部门定位、工作内容和成员培养方向，通过视觉设计和内容策划提升招新吸引力。",
       tags: ["PPT设计", "活动策划", "校园运营"],
-      link: "./assets/works/ppt/planning-center-recruitment.pptx",
-      cta: "查看 PPT →",
       coverNote: "封面待补充",
       coverImage: "./assets/works/covers/planning-ppt.jpg",
+      previewImages: ["./assets/works/ppt/planning-center-recruitment-01.jpg"],
     },
     {
       type: "WeChat",
@@ -193,11 +191,9 @@ window.portfolioData = {
       intro:
         "独立完成校园组织换届大会策划方案，从活动流程设计、人员安排到执行准备进行整体规划。",
       tags: ["活动策划", "项目管理", "校园运营"],
-      link: "./assets/works/docs/handover-meeting-plan.pdf",
-      cta: "查看完整文件 →",
       coverNote: "策划案截图待补充",
       coverImage: "./assets/works/covers/handover-meeting.jpg",
-      detailFile: "./assets/works/docs/handover-meeting-plan.pdf",
+      previewImages: ["./assets/works/ppt/handover-meeting-01.jpg"],
       detail: {
         videoNote: "换届大会策划案预览",
         thinking:

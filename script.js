@@ -65,9 +65,12 @@ function renderProjects() {
 
 function getWorkActionLabel(work) {
   if (work.type === "Video") return "查看视频";
-  if (work.type === "PPT") return "查看PPT";
-  if (work.detailFile) return "查看完整文件";
-  return "查看完整内容";
+  return "查看作品";
+}
+
+function getWorkPreviewImages(work) {
+  if (work.previewImages?.length) return work.previewImages;
+  return [work.detailImage, work.coverImage].filter(Boolean);
 }
 
 function renderWorks() {
@@ -75,10 +78,13 @@ function renderWorks() {
   if (!board) return;
   board.innerHTML = data.works
     .map((work, index) => {
-      const actionHref = work.link || work.detailFile || work.detailImage || work.coverImage || "";
+      const isVideo = work.type === "Video";
+      const previewImages = getWorkPreviewImages(work);
+      const hasPreview = !isVideo && previewImages.length;
       return `
         <article
           class="work-tile reveal tile-${index + 1}${work.featured ? " featured-work" : ""}${work.coverImage ? " has-cover" : ""}${work.coverFit === "top-crop" ? " top-crop-cover" : ""}"
+          ${hasPreview ? `data-preview-index="${index}" role="button" tabindex="0"` : ""}
         >
           <span class="work-thumb">
             ${
@@ -95,8 +101,10 @@ function renderWorks() {
               : ""
           }
           ${
-            actionHref
-              ? `<a class="work-action" href="${actionHref}" target="_blank" rel="noopener noreferrer">${getWorkActionLabel(work)}</a>`
+            isVideo && work.link
+              ? `<a class="work-action" href="${work.link}" target="_blank" rel="noopener noreferrer">${getWorkActionLabel(work)}</a>`
+              : hasPreview
+              ? `<button class="work-action" type="button" data-preview-trigger="${index}">${getWorkActionLabel(work)}</button>`
               : `<span class="work-empty-note">等待补充对应作品素材</span>`
           }
         </article>
@@ -111,11 +119,95 @@ function setupLightbox() {
     setupImagePreview();
     return;
   }
+  const preview = lightbox.querySelector(".lightbox-card");
   const close = lightbox.querySelector("button");
+  const openWorkPreview = (index) => {
+    const work = data.works[Number(index)];
+    if (!work) return;
+    const previewImages = getWorkPreviewImages(work);
+    if (!previewImages.length || work.type === "Video") return;
 
-  close.addEventListener("click", () => lightbox.setAttribute("aria-hidden", "true"));
+    preview.innerHTML = `
+      <div class="work-preview-note">
+        <span class="eyebrow">${work.type || "Work"} archive</span>
+        <h2>${work.title}</h2>
+        <p>${work.intro}</p>
+        <div class="work-modal-gallery">
+          ${previewImages
+            .map(
+              (image, imageIndex) => `
+                <figure class="work-modal-photo${work.coverFit === "top-crop" ? " long-image" : ""}">
+                  <img src="${image}" alt="${work.title} 作品预览 ${imageIndex + 1}" loading="lazy" decoding="async">
+                  <figcaption>${imageIndex === 0 ? "cover / saved page" : `archive page ${imageIndex + 1}`}</figcaption>
+                </figure>
+              `
+            )
+            .join("")}
+        </div>
+        ${
+          work.detail?.thinking
+            ? `<section class="work-detail-section">
+                <h3>${work.type === "PPT" || work.type === "Plan" ? "创作记录" : "创作思路"}</h3>
+                <p>${work.detail.thinking}</p>
+              </section>`
+            : ""
+        }
+        ${
+          work.detail?.record
+            ? `<section class="work-detail-section">
+                <h3>${work.type === "Plan" ? "项目总结" : "内容复盘"}</h3>
+                ${
+                  work.detail.recordItems
+                    ? `<div class="work-record-tags">${work.detail.recordItems.map((item) => `<span>${item}</span>`).join("")}</div>`
+                    : ""
+                }
+                <p>${work.detail.record}</p>
+              </section>`
+            : ""
+        }
+        ${
+          work.tags
+            ? `<div class="work-tags preview-tags">${work.tags.map((tag) => `<i>${tag}</i>`).join("")}</div>`
+            : ""
+        }
+      </div>
+    `;
+
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  };
+  const closeWorkPreview = () => {
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  };
+
+  document.querySelectorAll(".work-tile[data-preview-index]").forEach((tile) => {
+    tile.addEventListener("click", (event) => {
+      if (event.target.closest("a")) return;
+      openWorkPreview(tile.dataset.previewIndex);
+    });
+    tile.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openWorkPreview(tile.dataset.previewIndex);
+      }
+    });
+  });
+
+  document.querySelectorAll(".work-action[data-preview-trigger]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openWorkPreview(button.dataset.previewTrigger);
+    });
+  });
+
+  close.addEventListener("click", closeWorkPreview);
   lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) lightbox.setAttribute("aria-hidden", "true");
+    if (event.target === lightbox) closeWorkPreview();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.getAttribute("aria-hidden") === "false") closeWorkPreview();
   });
 
   setupImagePreview();
