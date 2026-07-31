@@ -7768,7 +7768,7 @@ img {
   }
 }
 
-/* Dreamcore motion layer */
+/* Dreamcore sticker motion layer */
 .dream-overlay,
 .dream-atmosphere,
 .deep-sea-particles {
@@ -7779,20 +7779,15 @@ img {
   z-index: 0;
 }
 
-.dream-atmosphere {
-  isolation: isolate;
-}
-
 .dream-glow {
   position: absolute;
-  width: clamp(180px, 30vw, 440px);
+  width: clamp(160px, 24vw, 360px);
   aspect-ratio: 1;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 38% 42%, rgba(232, 243, 250, 0.52), rgba(163, 190, 221, 0.2) 42%, rgba(112, 145, 191, 0) 72%);
+    radial-gradient(circle at 38% 42%, rgba(232, 243, 250, 0.42), rgba(163, 190, 221, 0.16) 42%, rgba(112, 145, 191, 0) 72%);
   filter: blur(18px);
-  opacity: 0.44;
-  transform: translate3d(0, 0, 0);
+  opacity: 0.34;
   animation: dreamGlowBreath var(--dream-glow-duration, 18s) ease-in-out infinite alternate;
   will-change: transform, opacity;
 }
@@ -7800,24 +7795,23 @@ img {
 .dream-glow-one {
   --dream-glow-duration: 19s;
   top: 10vh;
-  left: -8vw;
+  left: -7vw;
 }
 
 .dream-glow-two {
   --dream-glow-duration: 24s;
-  right: -10vw;
-  bottom: 14vh;
-  width: clamp(220px, 34vw, 500px);
+  right: -8vw;
+  bottom: 12vh;
   background:
-    radial-gradient(circle at 46% 46%, rgba(244, 238, 252, 0.48), rgba(169, 184, 222, 0.18) 44%, rgba(98, 132, 184, 0) 74%);
+    radial-gradient(circle at 46% 46%, rgba(244, 238, 252, 0.38), rgba(169, 184, 222, 0.16) 44%, rgba(98, 132, 184, 0) 74%);
 }
 
 .dream-glow-three {
   --dream-glow-duration: 21s;
-  top: 48vh;
-  left: 42vw;
-  width: clamp(140px, 22vw, 300px);
-  opacity: 0.26;
+  top: 50vh;
+  left: 46vw;
+  width: clamp(120px, 18vw, 260px);
+  opacity: 0.22;
 }
 
 main,
@@ -7836,6 +7830,7 @@ main,
 .contact-sheet {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .home-page > :not(.dream-decoration),
@@ -7844,100 +7839,99 @@ main,
 .works-page > :not(.dream-decoration),
 .contact-sheet > :not(.dream-decoration) {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .dream-decoration {
   pointer-events: none;
   position: absolute;
   display: block;
-  z-index: 0;
-  width: var(--dream-deco-size, clamp(80px, 16vw, 210px));
-  max-width: min(34vw, 240px);
+  z-index: 3;
+  width: var(--dream-deco-size, clamp(70px, 10vw, 180px));
+  max-width: 260px;
   height: auto;
-  border-radius: 22px;
   object-fit: contain;
-  filter: none !important;
+  filter: drop-shadow(0 12px 22px rgba(38, 78, 130, 0.16)) !important;
   mix-blend-mode: normal !important;
-  opacity: var(--dream-deco-opacity, 0.12) !important;
-  transform: translate3d(0, 0, 0) rotate(var(--dream-deco-rotate, 0deg));
-  animation: dreamFloat var(--dream-deco-duration, 16s) ease-in-out infinite alternate;
+  opacity: var(--dream-deco-opacity, 0.34) !important;
+  animation: dreamFloat var(--dream-deco-duration, 12s) ease-in-out infinite;
   will-change: transform;
 }
 
 .dream-decoration-angel {
-  --dream-deco-size: clamp(120px, 18vw, 240px);
-  --dream-deco-opacity: 0.13;
-  --dream-deco-rotate: -1deg;
-  --dream-float-y: 10px;
-  --dream-float-rotate: 1.2deg;
-  top: clamp(80px, 12vh, 130px);
-  right: clamp(8px, 7vw, 96px);
+  --dream-deco-size: clamp(88px, 12vw, 190px);
+  --dream-deco-opacity: 0.34;
+  --dream-deco-duration: 14s;
+  top: clamp(154px, 17vh, 210px);
+  right: clamp(-28px, -2vw, -12px);
 }
 
-.dream-decoration-fish {
-  --dream-deco-size: clamp(110px, 20vw, 260px);
-  --dream-deco-opacity: 0.1;
-  --dream-deco-duration: 22s;
-  --dream-deco-rotate: 1.5deg;
-  --dream-float-y: 12px;
-  bottom: clamp(14px, 6vh, 80px);
-  left: clamp(6px, 6vw, 92px);
+.dream-decoration-stars,
+.dream-decoration-sparkle,
+.dream-decoration-edge-stars,
+.dream-decoration-work-stars,
+.dream-decoration-window-glow {
+  width: clamp(76px, 9vw, 150px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(31, 68, 126, 0.52) 0 2px, transparent 3px),
+    radial-gradient(circle at 62% 36%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
+    radial-gradient(circle at 42% 72%, rgba(73, 119, 176, 0.42) 0 1px, transparent 3px),
+    radial-gradient(circle at 78% 64%, rgba(255, 255, 255, 0.66) 0 1px, transparent 3px);
+  opacity: 0.38 !important;
+  animation:
+    dreamFloat var(--dream-deco-duration, 18s) ease-in-out infinite,
+    dreamPulse 5.5s ease-in-out infinite;
+}
+
+.dream-decoration-stars {
+  --dream-deco-duration: 18s;
+  left: clamp(14px, 5vw, 64px);
+  bottom: clamp(30px, 8vh, 92px);
 }
 
 .dream-decoration-flower {
-  --dream-deco-size: clamp(76px, 12vw, 150px);
-  --dream-deco-opacity: 0.16;
-  --dream-deco-duration: 14s;
-  --dream-float-y: 7px;
-  top: clamp(118px, 17vh, 180px);
-  left: clamp(10px, 5vw, 68px);
-}
-
-.dream-decoration-cat {
-  --dream-deco-size: clamp(72px, 11vw, 138px);
-  --dream-deco-opacity: 0.14;
+  --dream-deco-size: clamp(92px, 12vw, 190px);
+  --dream-deco-opacity: 0.34;
   --dream-deco-duration: 18s;
-  --dream-float-y: 8px;
-  --dream-float-rotate: -1deg;
-  top: clamp(360px, 54vh, 560px);
-  right: clamp(10px, 8vw, 110px);
+  top: clamp(340px, 42vh, 460px);
+  left: clamp(-48px, -2vw, -18px);
 }
 
-.dream-decoration-collage {
-  --dream-deco-size: clamp(170px, 25vw, 340px);
-  --dream-deco-opacity: 0.09;
-  --dream-deco-duration: 24s;
-  --dream-float-y: 10px;
-  top: clamp(90px, 16vh, 170px);
-  right: max(-90px, -5vw);
+.dream-decoration-sparkle {
+  --dream-deco-duration: 22s;
+  right: clamp(12px, 5vw, 84px);
+  top: clamp(620px, 70vh, 760px);
 }
 
-.dream-decoration-window {
-  --dream-deco-size: clamp(140px, 21vw, 280px);
-  --dream-deco-opacity: 0.1;
-  --dream-deco-duration: 20s;
-  --dream-float-y: 9px;
-  top: clamp(110px, 18vh, 210px);
-  left: max(-80px, -4vw);
+.dream-decoration-edge-stars {
+  --dream-deco-duration: 14s;
+  right: clamp(-28px, -2vw, -12px);
+  top: clamp(180px, 24vh, 260px);
 }
 
-.dream-decoration-angel-small {
-  --dream-deco-size: clamp(74px, 11vw, 150px);
-  --dream-deco-opacity: 0.12;
-  --dream-deco-duration: 16s;
-  --dream-float-y: 6px;
-  bottom: clamp(34px, 9vh, 120px);
-  right: clamp(10px, 5vw, 82px);
+.dream-decoration-window-glow {
+  --dream-deco-duration: 22s;
+  left: clamp(-28px, -2vw, -12px);
+  top: clamp(180px, 24vh, 280px);
+  background:
+    radial-gradient(circle at 42% 42%, rgba(255, 255, 255, 0.68), transparent 8px),
+    radial-gradient(circle at 52% 52%, rgba(125, 176, 219, 0.28), transparent 62px);
+}
+
+.dream-decoration-work-stars {
+  --dream-deco-duration: 18s;
+  right: clamp(10px, 5vw, 70px);
+  bottom: clamp(22px, 8vh, 90px);
 }
 
 .dream-decoration-flower-small {
-  --dream-deco-size: clamp(64px, 10vw, 130px);
-  --dream-deco-opacity: 0.16;
-  --dream-deco-duration: 15s;
-  --dream-float-y: 6px;
-  right: clamp(18px, 5vw, 72px);
-  bottom: clamp(16px, 5vh, 52px);
+  --dream-deco-size: clamp(72px, 9vw, 140px);
+  --dream-deco-opacity: 0.3;
+  --dream-deco-duration: 10s;
+  right: clamp(-34px, -2vw, -12px);
+  bottom: clamp(18px, 4vh, 48px);
 }
 
 .dream-particle {
@@ -8016,77 +8010,92 @@ main,
 .work-single-preview img,
 .work-video-placeholder img,
 .qr-card img,
-.image-lightbox img {
+.image-lightbox img,
+.mbti-display-frame img {
   filter: none !important;
   mix-blend-mode: normal !important;
   opacity: 1 !important;
 }
 
 @keyframes dreamFloat {
-  from {
-    transform: translate3d(0, 0, 0) rotate(var(--dream-deco-rotate, 0deg));
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
   }
 
-  to {
-    transform:
-      translate3d(0, var(--dream-float-y, 8px), 0)
-      rotate(calc(var(--dream-deco-rotate, 0deg) + var(--dream-float-rotate, 1deg)));
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(1deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+}
+
+@keyframes dreamPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
   }
 }
 
 @keyframes dreamGlowBreath {
   from {
-    opacity: 0.26;
+    opacity: 0.22;
     transform: translate3d(-8px, 0, 0) scale(0.96);
   }
 
   to {
-    opacity: 0.46;
+    opacity: 0.38;
     transform: translate3d(12px, 10px, 0) scale(1.05);
   }
 }
 
 @media (max-width: 760px) {
   .dream-glow {
-    opacity: 0.28;
+    opacity: 0.24;
     filter: blur(16px);
   }
 
   .dream-decoration {
-    --dream-float-y: 5px;
-    max-width: 26vw;
-  }
-
-  .dream-decoration-fish,
-  .dream-decoration-collage,
-  .dream-decoration-angel-small {
-    display: none;
+    --dream-deco-size: clamp(62px, 18vw, 108px);
+    max-width: 120px;
+    opacity: min(var(--dream-deco-opacity, 0.22), 0.24) !important;
   }
 
   .dream-decoration-angel {
-    top: 96px;
-    right: -18px;
+    top: 168px;
+    right: -38px;
+  }
+
+  .dream-decoration-stars {
+    left: 12px;
+    bottom: 24px;
   }
 
   .dream-decoration-flower {
-    top: 132px;
-    left: -16px;
+    top: 380px;
+    left: -44px;
   }
 
-  .dream-decoration-cat {
-    top: 360px;
-    right: -18px;
+  .dream-decoration-sparkle,
+  .dream-decoration-work-stars {
+    display: none;
   }
 
-  .dream-decoration-window {
-    left: -38px;
-    top: 118px;
+  .dream-decoration-edge-stars,
+  .dream-decoration-window-glow {
+    top: 134px;
   }
 
   .dream-decoration-flower-small {
-    right: 12px;
-    bottom: 12px;
-    max-width: 22vw;
+    right: 4px;
+    bottom: 8px;
   }
 
   .project-card:hover,
@@ -8105,10 +8114,6 @@ main,
   .dream-glow,
   .dream-decoration,
   .dream-particle,
-  .project-card,
-  .work-tile,
-  .project-cover img,
-  .work-thumb img,
   #work-lightbox .lightbox-card,
   .image-lightbox img {
     animation: none !important;
@@ -8143,8 +8148,24 @@ main,
   letter-spacing: 0.04em;
 }
 
+.qr-card img {
+  width: min(180px, 72vw);
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
 @media (max-width: 760px) {
   .mbti-display-frame img {
     max-height: 220px;
+  }
+
+  .qr-card img {
+    width: min(170px, 64vw);
   }
 }
