@@ -63,27 +63,22 @@ function renderProjects() {
     .join("");
 }
 
+function getWorkActionLabel(work) {
+  if (work.type === "Video") return "查看视频";
+  if (work.type === "PPT") return "查看PPT";
+  if (work.detailFile) return "查看完整文件";
+  return "查看完整内容";
+}
+
 function renderWorks() {
   const board = document.querySelector("#works-board");
   if (!board) return;
   board.innerHTML = data.works
-    .map(
-      (work, index) => `
-        <button
+    .map((work, index) => {
+      const actionHref = work.link || work.detailFile || work.detailImage || work.coverImage || "";
+      return `
+        <article
           class="work-tile reveal tile-${index + 1}${work.featured ? " featured-work" : ""}${work.coverImage ? " has-cover" : ""}${work.coverFit === "top-crop" ? " top-crop-cover" : ""}"
-          type="button"
-          data-title="${work.title}"
-          data-intro="${work.intro}"
-          data-type="${work.type}"
-          data-link="${work.link || ""}"
-          data-cta="${work.cta || ""}"
-          data-tags="${work.tags ? work.tags.join(" / ") : ""}"
-          data-video-note="${work.detail?.videoNote || ""}"
-          data-thinking="${work.detail?.thinking || ""}"
-          data-record="${work.detail?.record || ""}"
-          data-record-items="${work.detail?.recordItems ? work.detail.recordItems.join(" / ") : ""}"
-          data-detail-image="${work.detailImage || ""}"
-          data-detail-file="${work.detailFile || ""}"
         >
           <span class="work-thumb">
             ${
@@ -99,10 +94,14 @@ function renderWorks() {
               ? `<span class="work-tags">${work.tags.map((tag) => `<i>${tag}</i>`).join("")}</span>`
               : ""
           }
-          ${work.link ? `<span class="work-link-hint">${work.cta || "查看作品 →"}</span>` : ""}
-        </button>
-      `
-    )
+          ${
+            actionHref
+              ? `<a class="work-action" href="${actionHref}" target="_blank" rel="noopener noreferrer">${getWorkActionLabel(work)}</a>`
+              : `<span class="work-empty-note">等待补充对应作品素材</span>`
+          }
+        </article>
+      `;
+    })
     .join("");
 }
 
@@ -112,75 +111,7 @@ function setupLightbox() {
     setupImagePreview();
     return;
   }
-  const preview = lightbox.querySelector(".lightbox-card");
   const close = lightbox.querySelector("button");
-
-  document.querySelectorAll(".work-tile").forEach((tile) => {
-    tile.addEventListener("click", () => {
-      const link = tile.dataset.link;
-      const hasDetail = tile.dataset.videoNote || tile.dataset.thinking || tile.dataset.record;
-      const detailImage = tile.dataset.detailImage;
-      const detailFile = tile.dataset.detailFile;
-      preview.innerHTML = `
-        <div class="work-preview-note">
-          <span class="eyebrow">${tile.dataset.type || "Work"}</span>
-          <h2>${tile.dataset.title}</h2>
-          <p>${tile.dataset.intro}</p>
-          ${
-            hasDetail
-              ? `<div class="work-video-placeholder">
-                  ${
-                    detailFile
-                      ? `<iframe class="work-file-preview" src="${detailFile}" title="${tile.dataset.title} 文件预览"></iframe>`
-                      : detailImage
-                      ? `<img src="${detailImage}" alt="${tile.dataset.title} 作品展示图">`
-                      : `<span>${tile.dataset.videoNote}</span>`
-                  }
-                </div>`
-              : ""
-          }
-          ${
-            tile.dataset.thinking
-              ? `<section class="work-detail-section">
-                  <h3>创作思路</h3>
-                  <p>${tile.dataset.thinking}</p>
-                </section>`
-              : ""
-          }
-          ${
-            tile.dataset.record
-              ? `<section class="work-detail-section">
-                  <h3>制作记录</h3>
-                  ${
-                    tile.dataset.recordItems
-                      ? `<div class="work-record-tags">${tile.dataset.recordItems
-                          .split(" / ")
-                          .map((item) => `<span>${item}</span>`)
-                          .join("")}</div>`
-                      : ""
-                  }
-                  <p>${tile.dataset.record}</p>
-                </section>`
-              : ""
-          }
-          ${
-            tile.dataset.tags
-              ? `<div class="work-tags preview-tags">${tile.dataset.tags
-                  .split(" / ")
-                  .map((tag) => `<i>${tag}</i>`)
-                  .join("")}</div>`
-              : ""
-          }
-          ${
-            link
-              ? `<a class="detail-link" href="${link}" target="_blank" rel="noopener noreferrer">${tile.dataset.cta || "查看作品 →"}</a>`
-              : `<span class="work-empty-note">等待补充对应作品素材</span>`
-          }
-        </div>
-      `;
-      lightbox.setAttribute("aria-hidden", "false");
-    });
-  });
 
   close.addEventListener("click", () => lightbox.setAttribute("aria-hidden", "true"));
   lightbox.addEventListener("click", (event) => {

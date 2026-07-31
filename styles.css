@@ -5136,7 +5136,7 @@ dd,
   padding: 14px;
   text-align: left;
   transform: rotate(var(--work-tilt, -1deg)) translateY(var(--work-lift, 0));
-  cursor: pointer;
+  cursor: default;
 }
 
 .works-page .work-tile:nth-child(2n) {
@@ -5278,6 +5278,7 @@ dd,
   font-style: normal;
 }
 
+.work-action,
 .work-link-hint,
 .work-empty-note {
   display: inline-flex;
@@ -5290,6 +5291,25 @@ dd,
   color: #2f6fae;
   font-size: 13px;
   box-shadow: 0 0 18px rgba(47, 111, 174, 0.08);
+}
+
+.work-action {
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    transform 0.32s ease,
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.work-action:hover,
+.work-action:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(47, 111, 174, 0.42);
+  box-shadow:
+    0 0 24px rgba(126, 200, 227, 0.22),
+    0 12px 28px rgba(16, 36, 77, 0.12);
 }
 
 .work-preview-note {
