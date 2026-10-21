@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to My Portfolio</title>
-    <meta name="description" content="A student personal portfolio." />
+    <title>张逸舒｜个人作品集</title>
+    <meta name="description" content="张逸舒的个人作品集，记录内容运营、项目实践与创意探索。" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -12,14 +12,14 @@
     <header class="site-header">
       <a class="brand" href="./index.html">
         <span class="brand-dot"></span>
-        <span data-bind="name">My Portfolio</span>
+        <span data-bind="name">张逸舒作品集</span>
       </a>
-      <nav class="nav" aria-label="Portfolio navigation">
-        <a aria-current="page" href="./index.html">Home</a>
-        <a href="./about.html">About</a>
-        <a href="./projects.html">Projects</a>
-        <a href="./works.html">Works</a>
-        <a href="./contact.html">Contact</a>
+      <nav class="nav" aria-label="作品集导航">
+        <a aria-current="page" href="./index.html">首页</a>
+        <a href="./about.html">关于</a>
+        <a href="./projects.html">实践/实习</a>
+        <a href="./works.html">作品</a>
+        <a href="./contact.html">联系</a>
       </nav>
     </header>
 
@@ -27,7 +27,7 @@
       <section class="home-page ocean-page" aria-labelledby="home-title">
         <img class="dream-decoration dream-decoration-home dream-decoration-angel" src="./assets/decorations/cutouts/angel-fairies-cutout.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <span class="dream-decoration dream-decoration-home dream-decoration-stars" aria-hidden="true"></span>
-        <div class="open-book" aria-label="Open portfolio book">
+        <div class="open-book" aria-label="打开个人作品集">
           <div class="book-page book-left">
             <div class="home-copy">
               <span class="tape tape-a"></span>
@@ -36,7 +36,7 @@
               <p class="home-line" data-bind="homeLine">
                 A personal archive of projects, fragments and quiet experiments.
               </p>
-              <a class="portfolio-button" href="./projects.html">Explore Portfolio</a>
+              <a class="portfolio-button" href="./projects.html">浏览项目</a>
             </div>
             <div class="book-note note-left">personal notes</div>
             <div class="floating-fish fish-three"></div>
@@ -68,7 +68,11 @@
       </section>
     </main>
 
+    <script src="./assets/vendor/lenis.min.js" defer></script>
+    <script src="./assets/vendor/gsap.min.js" defer></script>
+    <script src="./assets/vendor/ScrollTrigger.min.js" defer></script>
     <script src="./data.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

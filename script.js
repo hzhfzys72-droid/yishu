@@ -34,7 +34,7 @@ function renderProjects() {
   grid.innerHTML = data.projects
     .map(
       (project, index) => `
-        <article class="project-card reveal" data-href="${project.href}" style="--tilt:${index % 2 ? "1.3deg" : "-1deg"}">
+        <article class="project-card reveal" data-href="${project.href}" data-archive-index="${String(index + 1).padStart(2, "0")}" style="--tilt:${index % 2 ? "1.3deg" : "-1deg"}">
           <div class="project-cover">
             ${
               project.coverImage
@@ -47,15 +47,15 @@ function renderProjects() {
             <h2>${project.title}</h2>
             <p>${project.intro}</p>
             <dl>
-              <div><dt>Role</dt><dd>${project.role}</dd></div>
-              <div><dt>Highlight</dt><dd>${project.highlight}</dd></div>
+              <div><dt>我的角色</dt><dd>${project.role}</dd></div>
+              <div><dt>项目亮点</dt><dd>${project.highlight}</dd></div>
             </dl>
             ${
               project.tags
                 ? `<div class="project-tags">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>`
                 : ""
             }
-            <a class="detail-link" href="${project.href}">${project.cta || "View Project"}</a>
+            <a class="detail-link" href="${project.href}">${project.cta || "查看项目"}</a>
           </div>
         </article>
       `
@@ -134,6 +134,7 @@ function renderWorks() {
       return `
         <article
           class="work-tile reveal tile-${index + 1}${work.featured ? " featured-work" : ""}${work.coverImage ? " has-cover" : ""}${work.coverFit === "top-crop" ? " top-crop-cover" : ""}"
+          data-archive-index="${String(index + 1).padStart(2, "0")}" data-work-type="${work.type || "Work"}"
           ${hasPreview ? `data-preview-index="${index}" role="button" tabindex="0"` : ""}
         >
           <span class="work-thumb">
@@ -172,7 +173,7 @@ function setupLightbox() {
   const preview = lightbox.querySelector(".lightbox-card");
   const close = lightbox.querySelector("button");
   let closeTimer;
-  const openWorkPreview = (index) => {
+  const openWorkPreview = (index, source) => {
     const work = data.works[Number(index)];
     if (!work) return;
     const previewImages = getWorkPreviewImages(work);
@@ -217,6 +218,8 @@ function setupLightbox() {
     lightbox.classList.remove("is-closing");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
+    window.portfolioLenis?.stop();
+    document.dispatchEvent(new CustomEvent("portfolio:modal-open", { detail: { preview, source } }));
   };
   const closeWorkPreview = () => {
     if (lightbox.getAttribute("aria-hidden") === "true") return;
@@ -225,18 +228,19 @@ function setupLightbox() {
       lightbox.setAttribute("aria-hidden", "true");
       lightbox.classList.remove("is-closing");
       document.body.classList.remove("modal-open");
+      window.portfolioLenis?.start();
     }, 240);
   };
 
   document.querySelectorAll(".work-tile[data-preview-index]").forEach((tile) => {
     tile.addEventListener("click", (event) => {
       if (event.target.closest("a")) return;
-      openWorkPreview(tile.dataset.previewIndex);
+      openWorkPreview(tile.dataset.previewIndex, tile);
     });
     tile.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openWorkPreview(tile.dataset.previewIndex);
+        openWorkPreview(tile.dataset.previewIndex, tile);
       }
     });
   });
@@ -245,7 +249,7 @@ function setupLightbox() {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      openWorkPreview(button.dataset.previewTrigger);
+      openWorkPreview(button.dataset.previewTrigger, button.closest(".work-tile"));
     });
   });
 
@@ -288,6 +292,7 @@ function setupImagePreview() {
       lightbox.setAttribute("aria-hidden", "true");
       lightbox.classList.remove("is-closing");
       document.body.classList.remove("modal-open");
+      window.portfolioLenis?.start();
     }, 220);
   };
 
@@ -300,6 +305,7 @@ function setupImagePreview() {
       lightbox.classList.remove("is-closing");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
+      window.portfolioLenis?.stop();
     });
   });
 
@@ -316,7 +322,7 @@ function setupProjectCardLinks() {
   document.querySelectorAll(".project-card[data-href]").forEach((card) => {
     card.addEventListener("click", (event) => {
       if (event.target.closest("a")) return;
-      window.location.href = card.dataset.href;
+      window.portfolioNavigate ? window.portfolioNavigate(card.dataset.href, card) : (window.location.href = card.dataset.href);
     });
   });
 }
@@ -324,7 +330,7 @@ function setupProjectCardLinks() {
 function createDeepSeaParticles() {
   const layer = document.createElement("div");
   const isSmallScreen = window.matchMedia("(max-width: 640px)").matches;
-  const particleCount = isSmallScreen ? 7 : 14;
+  const particleCount = isSmallScreen ? 5 : 11;
 
   layer.className = "deep-sea-particles dream-overlay";
   layer.setAttribute("aria-hidden", "true");
@@ -420,4 +426,4 @@ setupProjectCardLinks();
 setupLightbox();
 createDreamAtmosphere();
 createDeepSeaParticles();
-setupScrollReveal();
+if (!window.gsap || !window.ScrollTrigger || window.matchMedia("(prefers-reduced-motion: reduce)").matches) setupScrollReveal();

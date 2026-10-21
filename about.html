@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | My Portfolio</title>
+    <title>关于我｜张逸舒作品集</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="riso-grain" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">My Portfolio</span></a>
-      <nav class="nav" aria-label="Portfolio navigation">
-        <a href="./index.html">Home</a>
-        <a aria-current="page" href="./about.html">About</a>
-        <a href="./projects.html">Projects</a>
-        <a href="./works.html">Works</a>
-        <a href="./contact.html">Contact</a>
+      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">张逸舒作品集</span></a>
+      <nav class="nav" aria-label="作品集导航">
+        <a href="./index.html">首页</a>
+        <a aria-current="page" href="./about.html">关于</a>
+        <a href="./projects.html">实践/实习</a>
+        <a href="./works.html">作品</a>
+        <a href="./contact.html">联系</a>
       </nav>
     </header>
 
@@ -25,7 +25,7 @@
         <span class="dream-decoration dream-decoration-about dream-decoration-sparkle" aria-hidden="true"></span>
         <div class="section-title">
           <span>01</span>
-          <h1 id="about-title">About Me</h1>
+          <h1 id="about-title">关于我</h1>
         </div>
         <div class="about-book">
           <div class="about-left-page">
@@ -38,13 +38,13 @@
                 <span class="fish fish-two"></span>
                 <span class="fish fish-three"></span>
               </div>
-              <figcaption>blue memory / replace later</figcaption>
+              <figcaption>blue memory / Hunan 2026</figcaption>
             </figure>
             <div class="photo-date">2026 / 湖南</div>
             <div class="hand-arrow">this is me</div>
             <section class="little-universe" aria-labelledby="little-universe-title">
               <p class="little-universe-kicker">inspiration archive</p>
-              <h2 id="little-universe-title">My Little Universe</h2>
+              <h2 id="little-universe-title">我的小宇宙</h2>
               <div class="universe-collage">
                 <article class="universe-card universe-card-one">
                   <span class="mini-tape"></span>
@@ -77,18 +77,18 @@
           <div class="about-right-page">
             <div class="about-copy paper-sheet">
               <span class="tape tape-b"></span>
-              <p class="hello-line">Hello,<br />I'm <span data-bind="displayName">[Name]</span>.</p>
+              <p class="hello-line">你好，<br />我是 <span data-bind="displayName">[Name]</span>.</p>
               <dl class="student-info">
-                <div><dt>School</dt><dd data-bind="school">[School]</dd></div>
-                <div><dt>Major</dt><dd data-bind="major">[Major]</dd></div>
-                <div><dt>Year</dt><dd data-bind="grade">[Grade]</dd></div>
+                <div><dt>学校</dt><dd data-bind="school">[School]</dd></div>
+                <div><dt>专业</dt><dd data-bind="major">[Major]</dd></div>
+                <div><dt>毕业年份</dt><dd data-bind="grade">[Grade]</dd></div>
               </dl>
               <p class="about-brief" data-bind="about"></p>
               <div class="tag-cloud" id="about-tags"></div>
             </div>
 
             <div class="currently-card">
-              <p>Currently</p>
+              <p>最近在做</p>
               <ul id="currently-list"></ul>
             </div>
           </div>
@@ -96,7 +96,11 @@
       </section>
     </main>
 
+    <script src="./assets/vendor/lenis.min.js" defer></script>
+    <script src="./assets/vendor/gsap.min.js" defer></script>
+    <script src="./assets/vendor/ScrollTrigger.min.js" defer></script>
     <script src="./data.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

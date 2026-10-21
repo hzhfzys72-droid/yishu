@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects | My Portfolio</title>
+    <title>项目实践｜张逸舒作品集</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="riso-grain" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">My Portfolio</span></a>
-      <nav class="nav" aria-label="Portfolio navigation">
-        <a href="./index.html">Home</a>
-        <a href="./about.html">About</a>
-        <a aria-current="page" href="./projects.html">Projects</a>
-        <a href="./works.html">Works</a>
-        <a href="./contact.html">Contact</a>
+      <a class="brand" href="./index.html"><span class="brand-dot"></span><span data-bind="name">张逸舒作品集</span></a>
+      <nav class="nav" aria-label="作品集导航">
+        <a href="./index.html">首页</a>
+        <a href="./about.html">关于</a>
+        <a aria-current="page" href="./projects.html">实践/实习</a>
+        <a href="./works.html">作品</a>
+        <a href="./contact.html">联系</a>
       </nav>
     </header>
 
@@ -24,14 +24,18 @@
         <span class="dream-decoration dream-decoration-projects dream-decoration-edge-stars" aria-hidden="true"></span>
         <div class="section-title">
           <span>02</span>
-          <h1 id="projects-title">Projects</h1>
+          <h1 id="projects-title">项目实践</h1>
         </div>
-        <p class="page-note">Complete projects will live here. Each card opens a quiet project page with process, result and reflection.</p>
+        <p class="page-note">这里收录完整的项目实践，每张卡片都记录过程、成果与复盘。</p>
         <div class="project-grid" id="project-grid"></div>
       </section>
     </main>
 
+    <script src="./assets/vendor/lenis.min.js" defer></script>
+    <script src="./assets/vendor/gsap.min.js" defer></script>
+    <script src="./assets/vendor/ScrollTrigger.min.js" defer></script>
     <script src="./data.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

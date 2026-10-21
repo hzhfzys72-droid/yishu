@@ -2,12 +2,12 @@ window.portfolioData = {
   name: "张逸舒 Portfolio",
   displayName: "张逸舒",
   homeTitle: "Ocean Notes of Yishu",
-  homeLine: "A personal archive of projects, fragments and quiet experiments.",
+  homeLine: "记录内容运营、项目实践与创意探索的个人档案。",
   school: "湖南理工大学",
   major: "应用化学",
   grade: "2028 届毕业生",
   about:
-    "我是张逸舒，湖南理工大学应用化学专业2028届学生。我擅长把一个模糊的想法变成能被别人看懂、愿意点开的内容——写文案、拆解剧本结构，是我最近在反复打磨的手艺。\n\n同时也是一个闲不住的运营型选手，带过百人社群，写过能落地的活动方案。最近一头扎进AI的世界，用AI做数据分析、搭建网站、优化工作流，越学习越觉得这是一片能一直挖下去的地方。",
+    "我是张逸舒，湖南理工大学应用化学专业2028届学生。专业之外，我一直在内容、运营和活动策划中积累经验：做过综艺宣传、热点内容、短视频二创、校园社群和品牌活动，也习惯从数据和反馈中不断调整内容。\n\n我喜欢把杂乱的信息理清，也喜欢把一个模糊的想法推进到真正落地。最近正在尝试用AI辅助内容策划、数据分析和网站搭建，让创意不只停留在想法里。",
   email: "zyfish@163.com",
   wechat: "",
   github: "",
@@ -21,6 +21,20 @@ window.portfolioData = {
   projects: [
     {
       no: "NO.01",
+      title: "芒果TV｜综艺宣传实习",
+      intro:
+        "参与《舞蹈新风暴》《心动双重奏》两档综艺宣传，在团队协作中完成热点提炼、短视频内容跟进、媒体联动文案与传播素材整理。",
+      time: "2026.07–2026.10",
+      role: "综艺宣传实习生",
+      highlight: "参与热点提报20+条，成功率约90%，代表词条榜单热度702.1万。",
+      tags: ["综艺宣传", "热点运营", "内容策划"],
+      cover: "综艺宣传实习",
+      coverImage: "./assets/projects/mango-internship/internship-cover.jpg",
+      href: "./mango-internship.html",
+      cta: "查看实习记录 →",
+    },
+    {
+      no: "NO.02",
       title: "OfferPilot",
       intro:
         "探索AI在求职场景中的应用，通过Vibe Coding完成一个AI简历分析工具的搭建实践。从需求设计、页面构建到AI能力接入，探索AI辅助完成Web项目的过程。",
@@ -31,20 +45,6 @@ window.portfolioData = {
       cover: "OfferPilot",
       coverImage: "./assets/projects/offerpilot/website-optimized.jpg",
       href: "./offerpilot.html",
-      cta: "查看项目 →",
-    },
-    {
-      no: "NO.02",
-      title: "MBTI说了不算｜人格议题探索实验",
-      intro:
-        "从兴趣出发创建MBTI主题账号，通过人格刻板印象拆解、用户讨论和内容创作，探索年轻群体中的人格文化表达。",
-      time: "2026.07-至今",
-      role: "内容策划 / 新媒体运营 / 视觉设计",
-      highlight: "完成MBTI主题内容策划、图文制作与账号运营尝试。",
-      tags: ["内容运营", "用户洞察", "新媒体实验"],
-      cover: "MBTI Cover",
-      coverImage: "./assets/projects/mbti/account-home.jpg",
-      href: "./mbti.html",
       cta: "查看项目 →",
     },
     {
