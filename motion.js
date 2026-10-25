@@ -2,11 +2,30 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarsePointer = window.matchMedia("(pointer: coarse)");
   let navigating = false;
+  let backLink = null;
+  let floatingBack = null;
   const routeName = (() => {
     const file = window.location.pathname.split("/").pop() || "index.html";
     if (file === "index.html" || file === "") return "home";
     return file.replace(".html", "").replace(/[^a-z0-9-]/gi, "-");
   })();
+
+  function isMangoRoutePair(from, to) {
+    return (from === "projects" && to === "mango-internship") ||
+      (from === "mango-internship" && to === "projects");
+  }
+
+  let mangoCoverArrival = false;
+  try {
+    const previousRoute = JSON.parse(window.sessionStorage.getItem("portfolio-route") || "null");
+    if (previousRoute?.to === routeName && isMangoRoutePair(previousRoute.from, routeName)) {
+      mangoCoverArrival = true;
+      document.body.classList.add("mango-cover-transition");
+    }
+    window.sessionStorage.removeItem("portfolio-route");
+  } catch (_) {
+    // Cross-page motion is optional when storage is unavailable.
+  }
 
   document.body.classList.add(`archive-route-${routeName}`, "archive-entering");
   window.setTimeout(() => document.body.classList.remove("archive-entering"), 1100);
@@ -38,6 +57,35 @@
     const range = document.documentElement.scrollHeight - window.innerHeight;
     const value = range > 0 ? window.scrollY / range : 0;
     progress.style.transform = `scaleX(${Math.min(1, Math.max(0, value))})`;
+    if (backLink && floatingBack) {
+      floatingBack.hidden = backLink.getBoundingClientRect().bottom > 16;
+    }
+  }
+
+  function flyMangoCover(cover, finish) {
+    const bounds = cover.getBoundingClientRect();
+    const copy = cover.cloneNode(true);
+    copy.classList.add("mango-cover-flight");
+    copy.setAttribute("aria-hidden", "true");
+    Object.assign(copy.style, {
+      top: `${bounds.top}px`,
+      left: `${bounds.left}px`,
+      width: `${bounds.width}px`,
+      height: `${bounds.height}px`,
+    });
+    document.body.append(copy);
+    cover.style.visibility = "hidden";
+
+    const scale = Math.min(560, window.innerWidth * 0.78) / bounds.width;
+    window.gsap.to(copy, {
+      x: window.innerWidth / 2 - (bounds.left + bounds.width / 2),
+      y: window.innerHeight / 2 - (bounds.top + bounds.height / 2),
+      scale,
+      rotation: 0,
+      duration: 0.48,
+      ease: "power3.inOut",
+      onComplete: finish,
+    });
   }
 
   function navigate(href, source) {
@@ -47,21 +95,43 @@
       return;
     }
 
-    navigating = true;
     const destinationFile = new URL(href, window.location.href).pathname.split("/").pop() || "index.html";
     const destinationRoute = destinationFile === "index.html" ? "home" : destinationFile.replace(".html", "");
+    const cover = routeName === "projects"
+      ? document.querySelector('.project-card[data-href="./mango-internship.html"] .project-cover')
+      : document.querySelector(".internship-cover-image");
+    const coverBounds = cover?.getBoundingClientRect();
+    const coverVisible = coverBounds && coverBounds.bottom > 0 && coverBounds.top < window.innerHeight;
+    const mangoPair = isMangoRoutePair(routeName, destinationRoute) && coverVisible;
+    const sharedCover = mangoPair &&
+      Boolean(document.startViewTransition) && window.CSS?.supports("view-transition-name: mango-cover");
+
+    navigating = true;
+    if (sharedCover) document.body.classList.add("mango-cover-transition");
     document.body.dataset.routeTo = destinationRoute;
-    document.body.classList.add("is-leaving");
-    if (source) source.classList.add("is-route-source");
     try {
       window.sessionStorage.setItem("portfolio-route", JSON.stringify({ from: routeName, to: destinationRoute }));
     } catch (_) {
       // Navigation remains functional when storage is unavailable.
     }
+    if (sharedCover) {
+      window.location.href = href;
+      return;
+    }
+
+    document.body.classList.add("is-leaving");
+    if (source && !mangoPair) source.classList.add("is-route-source");
     window.portfolioLenis?.stop();
     const finish = () => {
       window.location.href = href;
     };
+
+    if (mangoPair && window.gsap) {
+      flyMangoCover(cover, finish);
+      return;
+    }
+
+    if (source) source.classList.add("is-route-source");
 
     if (window.gsap && document.querySelector(".open-book")) {
       document.body.classList.add("is-leaving-home");
@@ -140,12 +210,40 @@
       }, 0.12);
     }
     if (note) timeline.from(note, { autoAlpha: 0, y: 14, duration: 0.62 }, 0.3);
-    timeline.from(".archive-cover, .about-left-page, .about-right-page, .contact-sheet", {
+    timeline.from(".archive-cover, .about-book, .contact-sheet", {
       autoAlpha: 0,
       y: 22,
       scale: 0.99,
       duration: 0.78,
     }, 0.2);
+  }
+
+  function setupMangoCoverArrival() {
+    if (!mangoCoverArrival || document.startViewTransition || !window.gsap) return;
+    const cover = routeName === "projects"
+      ? document.querySelector('.project-card[data-href="./mango-internship.html"] .project-cover')
+      : document.querySelector(".internship-cover-image");
+    if (!cover) return;
+
+    if (routeName === "projects") {
+      window.gsap.set(cover.closest(".project-card"), { autoAlpha: 1, y: 0, filter: "none" });
+    }
+    const bounds = cover.getBoundingClientRect();
+    const scale = Math.min(560, window.innerWidth * 0.78) / bounds.width;
+    window.gsap.fromTo(cover, {
+      x: window.innerWidth / 2 - (bounds.left + bounds.width / 2),
+      y: window.innerHeight / 2 - (bounds.top + bounds.height / 2),
+      scale,
+      rotation: 0,
+      transformOrigin: "center center",
+    }, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      duration: 0.62,
+      ease: "power3.out",
+      clearProps: "transform",
+    });
   }
 
   function setupReveals() {
@@ -154,11 +252,7 @@
     const targets = gsap.utils.toArray([
       ".project-card",
       ".work-tile",
-      ".contact-main-card",
-      ".social-card",
-      ".qr-card",
-      ".currently-card",
-      ".student-info > div",
+      ".about-highlights",
       ".little-universe",
       ".archive-project > section:not(.archive-cover)",
       ".project-detail-page > .detail-sections > section",
@@ -167,6 +261,8 @@
     ].join(", "));
 
     targets.forEach((node, index) => {
+      if (mangoCoverArrival && routeName === "projects" &&
+        node.matches('.project-card[data-href="./mango-internship.html"]')) return;
       const fromState = { autoAlpha: 0, y: compactMotion ? 16 : 28 };
       const toState = {
         autoAlpha: 1,
@@ -289,6 +385,19 @@
 
   createMotionChrome();
   setupPageLinks();
+  backLink = document.querySelector(".project-detail-page > .back-link");
+  if (backLink) {
+    const label = backLink.textContent.trim();
+    backLink.title = label;
+    floatingBack = document.createElement("a");
+    floatingBack.className = "floating-back-link";
+    floatingBack.href = backLink.href;
+    floatingBack.setAttribute("aria-label", label);
+    floatingBack.title = label;
+    floatingBack.textContent = "←";
+    floatingBack.hidden = true;
+    document.body.append(floatingBack);
+  }
   updateProgress();
   window.addEventListener("scroll", updateProgress, { passive: true });
   window.addEventListener("resize", updateProgress);
@@ -299,6 +408,7 @@
   setupSmoothScroll();
   setupIntro();
   setupReveals();
+  setupMangoCoverArrival();
   setupParallax();
   setupModalMotion();
   setupMotionLifecycle();

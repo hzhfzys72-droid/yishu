@@ -2,21 +2,21 @@ window.portfolioData = {
   name: "张逸舒 Portfolio",
   displayName: "张逸舒",
   homeTitle: "Ocean Notes of Yishu",
-  homeLine: "记录内容运营、项目实践与创意探索的个人档案。",
+  homeLine: "芒果TV两档综艺宣传、20+条热点提报；从零搭建百人校园社群。",
   school: "湖南理工大学",
   major: "应用化学",
   grade: "2028 届毕业生",
   about:
-    "我是张逸舒，湖南理工大学应用化学专业2028届学生。专业之外，我一直在内容、运营和活动策划中积累经验：做过综艺宣传、热点内容、短视频二创、校园社群和品牌活动，也习惯从数据和反馈中不断调整内容。\n\n我喜欢把杂乱的信息理清，也喜欢把一个模糊的想法推进到真正落地。最近正在尝试用AI辅助内容策划、数据分析和网站搭建，让创意不只停留在想法里。",
-  email: "zyfish@163.com",
+    "在芒果TV实习时，我参与两档综艺的宣传：从正片里找传播点，写短视频标题和剪辑 brief，和剪辑方沟通脚本、成片的修改，再跟进热点提报。此前，我也从零搭建过百人校园社群。\n\n我想继续做内容运营，也想尝试游戏运营。平时会玩乙女游戏、《王者荣耀》和《王者万象棋》，也会留意角色、版本话题与玩家讨论。我希望把综艺宣传和校园社群中的内容策划、沟通经验，用在游戏内容与社区运营中。",
+  email: "zyfish421@163.com",
   wechat: "",
   github: "",
   social: "小红书 / MBTI说的不算bot",
-  tags: ["内容创作", "编剧策划", "社群运营", "AI工具", "持续好奇"],
-  currently: [
-    "整理芒果TV实习中参与的热点提报、宣传文案和传播素材",
-    "更新作品集，把做过的事和对应成果讲清楚",
-    "寻找内容运营、综艺宣传与策划方向的下一段实习",
+  tags: ["内容策划", "热点提炼", "短视频协作", "社群运营"],
+  highlights: [
+    "在芒果TV团队参与两档综艺宣传、20+条热点提报；代表词条榜单热度702.1万。",
+    "短视频内容协作：审片提炼传播点，拟标题与 brief，修改脚本和成片并跟进提报。",
+    "从0搭建100+人校园社群，完成招募、日常内容和活动推广。",
   ],
   projects: [
     {
@@ -35,16 +35,16 @@ window.portfolioData = {
     },
     {
       no: "NO.02",
-      title: "OfferPilot",
+      title: "校园回声站｜网易云音乐校园社群运营实验",
       intro:
-        "探索AI在求职场景中的应用，通过Vibe Coding完成一个AI简历分析工具的搭建实践。从需求设计、页面构建到AI能力接入，探索AI辅助完成Web项目的过程。",
-      time: "2026.07",
-      role: "AI驱动的简历优化实验",
-      highlight: "AI应用 / 产品探索 / Vibe Coding",
-      tags: ["AI应用", "产品探索", "Vibe Coding"],
-      cover: "OfferPilot",
-      coverImage: "./assets/projects/offerpilot/website-optimized.jpg",
-      href: "./offerpilot.html",
+        "从0搭建网易云音乐校园用户社群，通过多渠道拉新、内容传播和活动运营，完成100+校园用户沉淀。",
+      time: "2026.04-2026.07",
+      role: "校园大使 / 社群运营 / 活动执行",
+      highlight: "独立创建并运营100+人校园社群，负责用户招募、日常维护、活动推广及宣传物料制作。",
+      tags: ["社群运营", "用户增长", "品牌传播"],
+      cover: "校园社群招募海报",
+      coverImage: "./assets/projects/campus/certificate.jpg",
+      href: "./campus-community.html",
       cta: "查看项目 →",
     },
     {
@@ -63,20 +63,66 @@ window.portfolioData = {
     },
     {
       no: "NO.04",
-      title: "校园回声站｜网易云音乐校园社群运营实验",
+      title: "OfferPilot",
       intro:
-        "从0搭建网易云音乐校园用户社群，通过多渠道拉新、内容传播和活动运营，完成100+校园用户沉淀。",
-      time: "2026.04-2026.07",
-      role: "校园大使 / 社群运营 / 活动执行",
-      highlight: "独立创建并运营100+人校园社群，负责用户招募、日常维护、活动推广及宣传物料制作。",
-      tags: ["社群运营", "用户增长", "品牌传播"],
-      cover: "校园社群招募海报",
-      coverImage: "./assets/projects/campus/certificate.jpg",
-      href: "./campus-community.html",
+        "探索AI在求职场景中的应用，通过Vibe Coding完成一个AI简历分析工具的搭建实践。从需求设计、页面构建到AI能力接入，探索AI辅助完成Web项目的过程。",
+      time: "2026.07",
+      role: "AI驱动的简历优化实验",
+      highlight: "AI应用 / 产品探索 / Vibe Coding",
+      tags: ["AI应用", "产品探索", "Vibe Coding"],
+      cover: "OfferPilot",
+      coverImage: "./assets/projects/offerpilot/website-optimized.jpg",
+      href: "./offerpilot.html",
       cta: "查看项目 →",
     },
   ],
   works: [
+    {
+      type: "Video",
+      title: "《爱的修学旅行》｜嘉宾互动短视频剪辑",
+      intro:
+        "剪辑四支嘉宾互动竖屏短视频，分别呈现“当然了”系列与 ABC 问答的对话节奏、人物反应和字幕重点。",
+      tags: ["综艺短视频", "人物互动", "视频剪辑"],
+      coverImage: "./assets/works/videos/love-study-trip/series-cover.jpg",
+      previewKind: "video-collection",
+      featured: true,
+      videoGroups: [
+        {
+          title: "“当然了”互动系列",
+          clips: [
+            {
+              title: "高梓淇 × 晓彤",
+              duration: "01:35",
+              src: "./assets/works/videos/love-study-trip/of-course-gao-xiaotong.mp4",
+              poster: "./assets/works/videos/love-study-trip/of-course-gao-xiaotong.jpg",
+            },
+            {
+              title: "钟正 × 冯薪朵",
+              duration: "01:55",
+              src: "./assets/works/videos/love-study-trip/of-course-zhong-feng.mp4",
+              poster: "./assets/works/videos/love-study-trip/of-course-zhong-feng.jpg",
+            },
+            {
+              title: "陈瑜 × 林子濠",
+              duration: "01:45",
+              src: "./assets/works/videos/love-study-trip/of-course-chenyu-linzihao.mp4",
+              poster: "./assets/works/videos/love-study-trip/of-course-chenyu-linzihao.jpg",
+            },
+          ],
+        },
+        {
+          title: "ABC 问答",
+          clips: [
+            {
+              title: "高梓淇 × 晓彤",
+              duration: "02:52",
+              src: "./assets/works/videos/love-study-trip/abc-qa-gao-xiaotong.mp4",
+              poster: "./assets/works/videos/love-study-trip/abc-qa-gao-xiaotong.jpg",
+            },
+          ],
+        },
+      ],
+    },
     {
       type: "Video",
       title: "哈利波特｜魔法世界氛围混剪",

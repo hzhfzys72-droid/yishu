@@ -28,70 +28,61 @@
           <h1 id="about-title">关于我</h1>
         </div>
         <div class="about-book">
-          <div class="about-left-page">
-            <figure class="polaroid about-photo">
-              <span class="tape photo-tape"></span>
-              <div class="about-photo-frame">
-                <img src="./assets/about/zhang-yishu.jpg" alt="张逸舒个人照片" decoding="async" />
-                <span class="water-light"></span>
-                <span class="fish fish-one"></span>
-                <span class="fish fish-two"></span>
-                <span class="fish fish-three"></span>
-              </div>
-              <figcaption>blue memory / Hunan 2026</figcaption>
-            </figure>
-            <div class="photo-date">2026 / 湖南</div>
-            <div class="hand-arrow">this is me</div>
-            <section class="little-universe" aria-labelledby="little-universe-title">
-              <p class="little-universe-kicker">inspiration archive</p>
-              <h2 id="little-universe-title">我的小宇宙</h2>
-              <div class="universe-collage">
-                <article class="universe-card universe-card-one">
-                  <span class="mini-tape"></span>
-                  <div class="universe-photo">
-                    <img src="./assets/about/universe/otome-character.jpg" alt="二次元棉花娃娃收藏" loading="lazy" decoding="async" />
-                  </div>
-                  <h3>Otome memory</h3>
-                  <p><strong>dream note / 2026</strong>角色、IP与一点被收藏起来的心动。</p>
-                </article>
-                <article class="universe-card universe-card-two">
-                  <span class="mini-tape"></span>
-                  <div class="universe-photo">
-                    <img src="./assets/about/universe/fandom-collection.jpg" alt="吃谷追星收藏" loading="lazy" decoding="async" />
-                  </div>
-                  <h3>Fandom diary</h3>
-                  <p><strong>ticket stub / collection</strong>关于喜欢、陪伴和情绪连接的小证据。</p>
-                </article>
-                <article class="universe-card universe-card-three">
-                  <span class="mini-tape"></span>
-                  <div class="universe-photo">
-                    <img src="./assets/about/universe/offline-concert.jpg" alt="线下演唱会记录" loading="lazy" decoding="async" />
-                  </div>
-                  <h3>Dream fragments</h3>
-                  <p><strong>offline light / memory</strong>把现场的光、声音和瞬间留在这里。</p>
-                </article>
-              </div>
-            </section>
+          <div class="about-copy">
+            <h2 class="hello-line">你好，我是<span data-bind="displayName">张逸舒</span>。</h2>
+            <p class="about-meta">
+              <span data-bind="school">湖南理工大学</span>
+              <span data-bind="major">应用化学</span>
+              <span data-bind="grade">2028 届毕业生</span>
+            </p>
+            <p class="about-brief" data-bind="about"></p>
+            <div class="tag-cloud" id="about-tags" aria-label="经验关键词"></div>
           </div>
 
-          <div class="about-right-page">
-            <div class="about-copy paper-sheet">
-              <span class="tape tape-b"></span>
-              <p class="hello-line">你好，<br />我是 <span data-bind="displayName">[Name]</span>.</p>
-              <dl class="student-info">
-                <div><dt>学校</dt><dd data-bind="school">[School]</dd></div>
-                <div><dt>专业</dt><dd data-bind="major">[Major]</dd></div>
-                <div><dt>毕业年份</dt><dd data-bind="grade">[Grade]</dd></div>
-              </dl>
-              <p class="about-brief" data-bind="about"></p>
-              <div class="tag-cloud" id="about-tags"></div>
+          <figure class="polaroid about-photo">
+            <div class="about-photo-frame">
+              <img src="./assets/about/zhang-yishu.jpg" alt="张逸舒个人照片" decoding="async" />
             </div>
+          </figure>
 
-            <div class="currently-card">
-              <p>最近在做</p>
-              <ul id="currently-list"></ul>
+          <section class="about-highlights" aria-labelledby="about-highlights-title">
+            <div class="about-highlights-heading">
+              <p>实践与结果</p>
+              <h2 id="about-highlights-title">经历速览</h2>
             </div>
-          </div>
+            <div class="about-highlights-body">
+              <ul id="about-highlights-list"></ul>
+              <a href="./projects.html">查看实践/实习</a>
+            </div>
+          </section>
+
+          <section class="little-universe" aria-labelledby="little-universe-title">
+            <p class="little-universe-kicker">兴趣档案</p>
+            <h2 id="little-universe-title">我的小宇宙</h2>
+            <div class="universe-collage">
+              <article class="universe-card universe-card-one">
+                <div class="universe-photo">
+                  <img src="./assets/about/universe/otome-character.jpg" alt="二次元棉花娃娃收藏" loading="lazy" decoding="async" />
+                </div>
+                <h3>角色收藏</h3>
+                <p>乙女游戏、角色故事和棉花娃娃，是我一直喜欢的内容。</p>
+              </article>
+              <article class="universe-card universe-card-two">
+                <div class="universe-photo">
+                  <img src="./assets/about/universe/fandom-collection.jpg" alt="吃谷追星收藏" loading="lazy" decoding="async" />
+                </div>
+                <h3>追星与谷子</h3>
+                <p>收藏喜欢的作品，也留意同好之间怎么交流、分享。</p>
+              </article>
+              <article class="universe-card universe-card-three">
+                <div class="universe-photo">
+                  <img src="./assets/about/universe/offline-concert.jpg" alt="线下演唱会记录" loading="lazy" decoding="async" />
+                </div>
+                <h3>线下现场</h3>
+                <p>去演唱会，把喜欢的声音和瞬间留下来。</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
     </main>

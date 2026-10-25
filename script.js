@@ -22,10 +22,62 @@ function renderTags() {
   cloud.innerHTML = data.tags.map((tag) => `<span>${tag}</span>`).join("");
 }
 
-function renderCurrently() {
-  const list = document.querySelector("#currently-list");
+function renderHighlights() {
+  const list = document.querySelector("#about-highlights-list");
   if (!list) return;
-  list.innerHTML = data.currently.map((item) => `<li>${item}</li>`).join("");
+  list.innerHTML = data.highlights.map((item) => `<li>${item}</li>`).join("");
+}
+
+function setupContactCopy() {
+  document.querySelectorAll(".contact-copy[data-copy]").forEach((button) => {
+    const label = button.getAttribute("aria-label");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        button.textContent = "已复制";
+        button.setAttribute("aria-label", `${label}，已复制`);
+      } catch {
+        button.textContent = "复制失败";
+        button.setAttribute("aria-label", `${label}失败`);
+      }
+      window.setTimeout(() => {
+        button.textContent = "复制";
+        button.setAttribute("aria-label", label);
+      }, 1800);
+    });
+  });
+}
+
+function setupHotspotProgress() {
+  const gallery = document.querySelector(".hotspot-proof-grid");
+  const indicator = document.querySelector(".hotspot-scroll-progress");
+  if (!gallery || !indicator) return;
+
+  const count = gallery.querySelectorAll(".evidence-photo").length;
+  const label = indicator.querySelector(".hotspot-scroll-count");
+  let scheduled = false;
+
+  const update = () => {
+    scheduled = false;
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    indicator.hidden = maxScroll < 2;
+    if (indicator.hidden) return;
+
+    const position = Math.min(1, Math.max(0, gallery.scrollLeft / maxScroll));
+    const current = Math.min(count, Math.max(1, Math.round(position * (count - 1)) + 1));
+    indicator.style.setProperty("--hotspot-progress", (1 + position * (count - 1)) / count);
+    indicator.setAttribute("aria-valuenow", String(current));
+    label.textContent = `${String(current).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
+  };
+
+  gallery.addEventListener("scroll", () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener("resize", update);
+  if (window.ResizeObserver) new ResizeObserver(update).observe(gallery);
+  update();
 }
 
 function renderProjects() {
@@ -81,8 +133,51 @@ function getWorkPreviewKind(work) {
   return "single-image";
 }
 
+function getWorkVideoClips(work) {
+  return work.videoGroups?.flatMap((group) => group.clips) || [];
+}
+
 function renderWorkPreviewMedia(work, previewImages) {
   const kind = getWorkPreviewKind(work);
+
+  if (kind === "video-collection") {
+    const clips = getWorkVideoClips(work);
+    const first = clips[0];
+    return `
+      <div class="work-video-collection">
+        <div class="work-video-stage">
+          <video controls playsinline preload="none" poster="${first.poster}" src="${first.src}" aria-label="${first.title}">
+            您的浏览器暂不支持视频播放。
+          </video>
+          <p class="work-video-current">${first.title}</p>
+        </div>
+        <div class="work-video-groups">
+          ${work.videoGroups
+            .map(
+              (group) => `
+                <section class="work-video-group">
+                  <h3>${group.title}</h3>
+                  <div class="work-video-options">
+                    ${group.clips
+                      .map((clip) => {
+                        const index = clips.indexOf(clip);
+                        return `
+                          <button class="work-video-option${index === 0 ? " is-active" : ""}" type="button" data-video-index="${index}" aria-pressed="${index === 0}">
+                            <img src="${clip.poster}" alt="" loading="lazy" decoding="async">
+                            <span>${clip.title}<small>${clip.duration}</small></span>
+                          </button>
+                        `;
+                      })
+                      .join("")}
+                  </div>
+                </section>
+              `
+            )
+            .join("")}
+        </div>
+      </div>
+    `;
+  }
 
   if (kind === "pdf" && work.previewPdf) {
     return `
@@ -130,10 +225,12 @@ function renderWorks() {
     .map((work, index) => {
       const isVideo = work.type === "Video";
       const previewImages = getWorkPreviewImages(work);
-      const hasPreview = !isVideo && (previewImages.length || work.previewPdf);
+      const hasPreview = getWorkPreviewKind(work) === "video-collection"
+        ? getWorkVideoClips(work).length > 0
+        : !isVideo && (previewImages.length || work.previewPdf);
       return `
         <article
-          class="work-tile reveal tile-${index + 1}${work.featured ? " featured-work" : ""}${work.coverImage ? " has-cover" : ""}${work.coverFit === "top-crop" ? " top-crop-cover" : ""}"
+          class="work-tile reveal tile-${index + 1}${work.featured ? " featured-work" : ""}${work.coverImage ? " has-cover" : ""}${work.coverFit === "top-crop" ? " top-crop-cover" : ""}${work.previewKind === "video-collection" ? " video-series-work" : ""}"
           data-archive-index="${String(index + 1).padStart(2, "0")}" data-work-type="${work.type || "Work"}"
           ${hasPreview ? `data-preview-index="${index}" role="button" tabindex="0"` : ""}
         >
@@ -177,10 +274,11 @@ function setupLightbox() {
     const work = data.works[Number(index)];
     if (!work) return;
     const previewImages = getWorkPreviewImages(work);
-    if ((!previewImages.length && !work.previewPdf) || work.type === "Video") return;
+    const isVideoCollection = getWorkPreviewKind(work) === "video-collection" && getWorkVideoClips(work).length > 0;
+    if (!isVideoCollection && ((!previewImages.length && !work.previewPdf) || work.type === "Video")) return;
 
     preview.innerHTML = `
-      <div class="work-preview-note">
+      <div class="work-preview-note${isVideoCollection ? " is-video-collection" : ""}">
         <span class="modal-file-label">${work.type || "Work"} archive · 2026</span>
         <h2>${work.title}</h2>
         <p>${work.intro}</p>
@@ -213,6 +311,31 @@ function setupLightbox() {
         }
       </div>
     `;
+    lightbox.querySelector(".lightbox-card").scrollTop = 0;
+
+    if (isVideoCollection) {
+      const clips = getWorkVideoClips(work);
+      const player = preview.querySelector(".work-video-stage video");
+      const current = preview.querySelector(".work-video-current");
+      const options = preview.querySelectorAll(".work-video-option");
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          const clip = clips[Number(option.dataset.videoIndex)];
+          if (!clip || option.classList.contains("is-active")) return;
+          player.pause();
+          player.src = clip.src;
+          player.poster = clip.poster;
+          player.setAttribute("aria-label", clip.title);
+          player.load();
+          current.textContent = clip.title;
+          options.forEach((item) => {
+            const active = item === option;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+        });
+      });
+    }
 
     window.clearTimeout(closeTimer);
     lightbox.classList.remove("is-closing");
@@ -223,6 +346,7 @@ function setupLightbox() {
   };
   const closeWorkPreview = () => {
     if (lightbox.getAttribute("aria-hidden") === "true") return;
+    preview.querySelector("video")?.pause();
     lightbox.classList.add("is-closing");
     closeTimer = window.setTimeout(() => {
       lightbox.setAttribute("aria-hidden", "true");
@@ -419,7 +543,9 @@ function setupScrollReveal() {
 
 bindText();
 renderTags();
-renderCurrently();
+renderHighlights();
+setupContactCopy();
+setupHotspotProgress();
 renderProjects();
 renderWorks();
 setupProjectCardLinks();
