@@ -10901,3 +10901,410 @@ body.is-leaving .is-route-source {
     font-size: 12px;
   }
 }
+
+/* One concrete editorial case, kept compact beside the existing evidence gallery. */
+.internship-detail .hotspot-case {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 174px;
+  gap: clamp(18px, 3vw, 32px);
+  align-items: center;
+  min-width: 0;
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(249, 251, 253, 0.9), rgba(225, 237, 247, 0.82));
+  box-shadow: 0 18px 46px rgba(20, 50, 89, 0.1);
+  color: var(--bd-indigo-900);
+}
+
+.hotspot-case-copy {
+  min-width: 0;
+}
+
+.hotspot-case-kicker {
+  margin: 0 0 8px;
+  color: var(--bd-blue-700);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hotspot-case h3 {
+  margin: 0;
+  scroll-margin-top: 110px;
+  color: var(--bd-indigo-900);
+  font-family: var(--bd-font-serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.hotspot-case-notes {
+  display: grid;
+  gap: 11px;
+  margin: 18px 0;
+}
+
+.hotspot-case-notes div {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.hotspot-case-notes dt {
+  color: var(--bd-blue-700);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.hotspot-case-notes dd {
+  margin: 0;
+  color: var(--bd-indigo-800);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.hotspot-case-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(38, 83, 137, 0.18);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.hotspot-case-result a {
+  color: var(--bd-blue-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hotspot-case-play {
+  display: grid;
+  width: 100%;
+  padding: 7px;
+  border: 1px solid rgba(38, 83, 137, 0.2);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 30px rgba(20, 50, 89, 0.13);
+  color: var(--bd-indigo-900);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 220ms var(--ease-dream), box-shadow 220ms var(--ease-dream);
+}
+
+.hotspot-case-play:hover,
+.hotspot-case-play:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(20, 50, 89, 0.18);
+}
+
+.hotspot-case-play img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 3px;
+  object-fit: contain;
+  background: #150d16;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.hotspot-case-play-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 2px 2px;
+  font-size: 13px;
+}
+
+.hotspot-case-play-label small {
+  margin-left: auto;
+  color: var(--bd-blue-700);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hotspot-case-play-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--bd-blue-700);
+}
+
+.hotspot-video-dialog {
+  width: min(440px, calc(100vw - 24px));
+  max-height: 92dvh;
+  margin: auto;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 7px;
+  background: #f2f7fb;
+  box-shadow: 0 26px 80px rgba(6, 27, 56, 0.35);
+  color: var(--bd-indigo-900);
+}
+
+.hotspot-video-dialog::backdrop {
+  background: rgba(8, 24, 46, 0.78);
+}
+
+.hotspot-video-dialog-inner {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.hotspot-video-dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.hotspot-video-dialog-heading h2 {
+  margin: 0;
+  font-family: var(--bd-font-sans);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.hotspot-video-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(38, 83, 137, 0.2);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--bd-indigo-900);
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.hotspot-video-dialog video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(92dvh - 80px);
+  aspect-ratio: 9 / 16;
+  background: #111;
+  object-fit: contain;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 620px) {
+  .internship-detail .workflow-strip {
+    gap: 7px;
+  }
+
+  .internship-detail .workflow-strip article {
+    display: grid;
+    grid-template-columns: 22px minmax(80px, 96px) minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    padding: 12px 10px;
+  }
+
+  .internship-detail .workflow-strip span {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .internship-detail .workflow-strip h3 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .internship-detail .workflow-strip p {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .internship-detail .hotspot-case {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hotspot-case-notes div {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+
+  .hotspot-case-notes dd {
+    font-size: 14px;
+  }
+
+  .hotspot-case-play {
+    grid-template-columns: 68px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hotspot-case-play img {
+    width: 68px;
+    height: 98px;
+  }
+
+  .hotspot-case-play-label {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-case-play {
+    transition: none;
+  }
+}
+
+/* Mobile reading sample for the Mango TV practice card. */
+@media (max-width: 760px) {
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-cover {
+    height: clamp(130px, 35vw, 150px);
+    max-height: 150px;
+    aspect-ratio: auto;
+    padding: 6px;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-cover img {
+    object-fit: contain;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body {
+    gap: 9px;
+    padding: 14px 16px 16px;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body h2 {
+    max-width: none;
+    font-size: 23px;
+    line-height: 1.16;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body p {
+    display: block;
+    overflow: visible;
+    font-size: 15px;
+    line-height: 1.58;
+    -webkit-line-clamp: unset;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body dl {
+    gap: 0;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body dl > div {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    padding: 7px 0;
+    border: 0;
+    border-top: 1px solid rgba(35, 78, 131, 0.14);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body dt {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-body dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-tags {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .project-tags span {
+    font-size: 11px;
+  }
+
+  .projects-page .project-card[data-href="./mango-internship.html"] .detail-link {
+    min-height: 42px;
+    font-size: 13px;
+  }
+}
+
+/* Keep the archive title while making the experience and actions easy to scan. */
+.archive-route-home .home-copy {
+  gap: clamp(12px, 1.7vw, 17px);
+}
+
+.archive-route-home .home-role {
+  font-size: 17px;
+}
+
+.archive-route-home .home-role span {
+  color: var(--bd-indigo-900);
+}
+
+.archive-route-home .home-line {
+  max-width: 480px;
+  color: var(--bd-indigo-800);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.archive-route-home .home-actions .portfolio-button,
+.archive-route-home .home-actions .home-secondary-link {
+  min-height: 46px;
+  font-size: 14px;
+}
+
+.archive-route-home .home-actions {
+  justify-content: flex-start;
+}
+
+.archive-route-home .home-actions .portfolio-button {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .archive-route-home .home-copy {
+    gap: 10px;
+  }
+
+  .archive-route-home .home-role {
+    font-size: 15px;
+  }
+
+  .archive-route-home .home-line {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .archive-route-home .home-actions .portfolio-button,
+  .archive-route-home .home-actions .home-secondary-link {
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  .archive-route-home .home-polaroid .photo-placeholder,
+  .archive-route-home .home-polaroid .ocean-photo {
+    max-height: 140px;
+  }
+
+  .archive-route-home .home-mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

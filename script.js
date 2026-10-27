@@ -80,6 +80,32 @@ function setupHotspotProgress() {
   update();
 }
 
+function setupHotspotCaseVideo() {
+  const trigger = document.querySelector(".hotspot-case-play");
+  const dialog = document.querySelector("#hotspot-video-dialog");
+  if (!trigger || !dialog) return;
+
+  const video = dialog.querySelector("video");
+  const close = dialog.querySelector(".hotspot-video-close");
+
+  trigger.addEventListener("click", () => {
+    dialog.showModal();
+    document.body.classList.add("modal-open");
+    window.portfolioLenis?.stop();
+  });
+
+  close.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    video.pause();
+    document.body.classList.remove("modal-open");
+    window.portfolioLenis?.start();
+    trigger.focus({ preventScroll: true });
+  });
+}
+
 function renderProjects() {
   const grid = document.querySelector("#project-grid");
   if (!grid) return;
@@ -546,6 +572,7 @@ renderTags();
 renderHighlights();
 setupContactCopy();
 setupHotspotProgress();
+setupHotspotCaseVideo();
 renderProjects();
 renderWorks();
 setupProjectCardLinks();

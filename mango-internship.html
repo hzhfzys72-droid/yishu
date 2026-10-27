@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>芒果TV综艺宣传实习｜张逸舒作品集</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=mango-case-20261027" />
   </head>
   <body>
     <div class="riso-grain" aria-hidden="true"></div>
@@ -69,6 +69,34 @@
             <article><span>04</span><h3>成片调整</h3><p>结合传播角度反馈成片，配合修改画面和内容呈现。</p></article>
             <article><span>05</span><h3>提报跟进</h3><p>完成热点提报并持续记录上榜和热度结果。</p></article>
           </div>
+          <section class="hotspot-case" aria-labelledby="hotspot-case-title">
+            <div class="hotspot-case-copy">
+              <p class="hotspot-case-kicker">代表案例 / 《舞蹈新风暴》</p>
+              <h3 id="hotspot-case-title">舞蹈新风暴有自己的时装周</h3>
+              <dl class="hotspot-case-notes">
+                <div>
+                  <dt>选题判断</dt>
+                  <dd>审看《醋加小米辣》舞台及评审环节时，我注意到表演有走秀般的画面和节奏，提出“时装周”这一传播角度，并卡出对应片段交给剪辑方。</dd>
+                </div>
+                <div>
+                  <dt>成片把控</dt>
+                  <dd>审脚本和成片时，我建议保留约 8 秒纯享舞台，尽量使用原片同期声；加入刘雨昕跟着舞动、表达喜爱的反应与点评。这些调整最终被采纳。</dd>
+                </div>
+                <div>
+                  <dt>发布跟进</dt>
+                  <dd>确认成片后由剪辑方发布，我继续跟进热点提报和榜单表现。</dd>
+                </div>
+              </dl>
+              <div class="hotspot-case-result">
+                <span>抖音娱乐榜第 42 名 · 榜单热度 676.7 万</span>
+                <a href="./assets/projects/mango-internship/hotspot-rank-676.jpg" target="_blank" rel="noreferrer">查看上榜截图</a>
+              </div>
+            </div>
+            <button class="hotspot-case-play" type="button" aria-haspopup="dialog" aria-controls="hotspot-video-dialog" aria-label="播放《醋加小米辣》热点成片，56秒">
+              <img src="./assets/projects/mango-internship/fashion-week-poster.jpg" alt="" loading="lazy" decoding="async" />
+              <span class="hotspot-case-play-label"><span class="hotspot-case-play-icon" aria-hidden="true"></span><strong>观看成片</strong><small>00:56</small></span>
+            </button>
+          </section>
           <div class="evidence-grid hotspot-proof-grid" aria-label="热点上升及在榜证明">
             <figure class="evidence-photo">
               <a href="./assets/projects/mango-internship/hotspot-rank-702.jpg" target="_blank" rel="noreferrer">
@@ -215,11 +243,24 @@
       </article>
     </main>
 
+    <dialog class="hotspot-video-dialog" id="hotspot-video-dialog" aria-labelledby="hotspot-video-title">
+      <div class="hotspot-video-dialog-inner">
+        <div class="hotspot-video-dialog-heading">
+          <h2 id="hotspot-video-title">《醋加小米辣》热点成片</h2>
+          <button type="button" class="hotspot-video-close" aria-label="关闭视频">×</button>
+        </div>
+        <video controls playsinline preload="none" poster="./assets/projects/mango-internship/fashion-week-poster.jpg">
+          <source src="./assets/projects/mango-internship/fashion-week-case.mp4" type="video/mp4" />
+          您的浏览器暂不支持视频播放。
+        </video>
+      </div>
+    </dialog>
+
     <script src="./assets/vendor/lenis.min.js" defer></script>
     <script src="./assets/vendor/gsap.min.js" defer></script>
     <script src="./assets/vendor/ScrollTrigger.min.js" defer></script>
     <script src="./data.js" defer></script>
-    <script src="./script.js" defer></script>
+    <script src="./script.js?v=mango-case-20261027" defer></script>
     <script src="./motion.js" defer></script>
   </body>
 </html>
